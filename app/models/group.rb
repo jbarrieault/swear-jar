@@ -4,5 +4,9 @@ class Group < ActiveRecord::Base
   has_many :triggers
   has_many :violations
   has_many :tweets, through: :violations
-  
+
+ 
+
+
+
 end
