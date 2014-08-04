@@ -4,6 +4,12 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :violations, through: :tweets
 
+  def join_groups(groups)
+    groups.each do |g|
+      self.groups << Group.find(g) unless self.groups.include?(Group.find(g))
+    end
+  end
+
   # scan_tweets every 10 minutes
   def scan_tweets
     raw_tweets = ["App Academy...Sucks!", "Shit man", "When is ice cream time?"]

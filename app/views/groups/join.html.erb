@@ -1,0 +1,14 @@
+<h1>Join a group</h1>
+
+<%= form_tag groups_join_path do %>  
+
+  <% @groups.each do |group| %>
+    <%= check_box_tag "groups[]", group.id %>
+    <%= label_tag "groups[]", group.name %>
+  <% end %>
+  
+  <p>
+    <%= submit_tag "Join these groups" %>
+</p>
+
+<% end %>

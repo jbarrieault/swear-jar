@@ -1,0 +1,10 @@
+this is the group page
+<p>
+  <%= link_to "Join a group", groups_join_path %><br> <!-- What path is this supposed to be? -->
+  <%= link_to "Create a group", new_group_path %>
+</p>
+<ul>
+<% @user.groups.each do |group| %>
+  <li><%= link_to "#{group.name}", group %> | <%= link_to "Edit", edit_group_path(group) %></li>
+<% end %>
+</ul>

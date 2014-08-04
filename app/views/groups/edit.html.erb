@@ -1,0 +1,24 @@
+<h1>Edit <%= @group.name %></h1>
+
+<%= form_tag group_path, :method => "PATCH" do %>  
+
+  <p>
+    <%= label_tag "name" %>
+    <%= text_field_tag "name", @group.name %>
+  </p>
+
+  <p>
+    <%= label_tag "Triggers" %>
+    <%= text_field_tag "triggers", @group.triggers.pluck(:name).join(", ") %>
+  </p>
+
+  <% @users.each do |user| %>
+    <%= check_box_tag "user[]", user.id, @group.users.include?(user) %>
+    <%= label_tag "user[]", user.name %>
+  <% end %>
+  
+  <p>
+    <%= submit_tag "Edit group" %>
+</p>
+
+<% end %>
