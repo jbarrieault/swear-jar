@@ -2,6 +2,53 @@
 
 ## Description
 
+Group 
+-name
+
+Trigger
+-name
+-group_id
+
+User
+-name
+-twitter_id
+-vemno_id
+
+UserGroup
+-user_id
+-group_id
+
+Violation
+-tweet_id
+-group_id
+
+
+Tweet
+-user_id
+-content
+-time
+
+
+#notify group members and violator on violation
+
+Group
+-index, show, new, update, destroy
+
+User
+-new, update(joining group), show()
+
+XXXXX tweet, violation XXX
+
+
+
+
+
+
+
+
+
+
+
 Add a short description of your app.
 
 ## Screenshots
