@@ -20,19 +20,24 @@ class User < ActiveRecord::Base
   # call @user.scan_tweets RIGHT before adding user to a new group
   # Call @user.init in sessions controller 
   def init  
+    create_client
+
+    set_book_end
+    self
+  end
+
+  def create_client
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key = TWEETAPPKEY
       config.consumer_secret = TWEETAPPSECRET
       config.access_token = TWEETTOKEN
       config.access_token_secret = TWEETTOKENSECRET
     end
-
-    set_book_end
-    self
   end
 
   def set_book_end 
-    self.book_end = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false}).first.id
+    most_recent   = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false})
+    self.book_end = most_recent == nil ? 0 : most_recent.first.id #works, in theory
   end
 
   def ten_tweets
@@ -58,7 +63,7 @@ class User < ActiveRecord::Base
 
   def raw_tweets
     tweet_batch = new_tweet_batch
-    self.book_end = tweet_batch.first.id unless tweet_batch.nil?
+    set_book_end unless tweet_batch.nil?
     return tweet_batch
   end
 
@@ -77,9 +82,10 @@ class User < ActiveRecord::Base
       groups.each do |group|
         group.triggers.each do |trigger|
           
-            binding.pry
           if raw_tweet.full_text.downcase.include?(trigger.name.downcase) 
-            tweet = Tweet.find_or_create_by(content: raw_tweet.full_text, user_id: self.id) #check API for key
+            binding.pry
+            tweet = Tweet.find_or_create_by(content: raw_tweet.full_text) #, user_id: self.id
+            self.tweets << tweet
             Violation.create(tweet_id: tweet.id, group_id: group.id)
           end
         end
