@@ -28,6 +28,12 @@ class User < ActiveRecord::Base
 
   end
 
+  def self.create_from_omniauth(auth_hash)
+    self.create(provider: auth_hash[:provider],
+                uid: auth_hash[:uid],
+                name: auth_hash[:info][:name])
+  end
+
 
 
   # iterate through each tweet and look for trigger words
