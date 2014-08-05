@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
 
   def init
     create_client
-    # self.last_batch_tweet_id = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false}).first.id
-    self.last_batch_tweet_id = 492461693176655872
+     self.last_batch_tweet_id = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false}).first.id
+    #self.last_batch_tweet_id = 492461693176655872
   end
 
   def ten_tweets
