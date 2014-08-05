@@ -32,12 +32,12 @@ class User < ActiveRecord::Base
   end
 
   def set_book_end 
-    most_recent   = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false})
+    most_recent   = @client.user_timeline(self.twitter_id.to_i, {count: 1, include_rts: false})
     self.book_end = most_recent == nil ? 0 : most_recent.first.id #works, in theory
   end
 
   def ten_tweets
-    @client.user_timeline(self.uid.to_i, {count: 10, include_rts: false})
+    @client.user_timeline(self.twitter_id.to_i, {count: 10, include_rts: false})
   end
 
   def create_client
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def new_tweet_batch
-    tweet_batch = self.client.user_timeline(self.uid.to_i,
+    tweet_batch = self.client.user_timeline(self.twitter_id.to_i,
       {count: 40, include_rts: false}) #is including retweets anyways, or favorites?
     return tweet_batch.map! { |t| t if t.id > self.book_end }.compact!
   end
@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
 
   def self.create_with_omniauth(info)
     create(name: info['name'])
+  end
+
+  def violation_count(group_id)
+    self.violations.where(group_id: group_id).count
   end
 
 
