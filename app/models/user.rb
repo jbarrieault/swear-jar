@@ -1,7 +1,3 @@
-# TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
-# TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
-# TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
-# TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
 # jacob = User.new(name: "jacob", twitter_id: 1961118786 )
 
 class User < ActiveRecord::Base
@@ -79,10 +75,8 @@ class User < ActiveRecord::Base
 
   end
 
-  def self.create_from_omniauth(auth_hash)
-    self.create(provider: auth_hash[:provider],
-                uid: auth_hash[:uid],
-                name: auth_hash[:info][:name])
+  def self.create_with_omniauth(info)
+    create(name: info['name'])
   end
 
 

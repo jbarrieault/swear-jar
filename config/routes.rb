@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#home'
   get '/auth/twitter', as: 'twitter_login'
+  get '/auth/venmo', as: 'venmo_login'
   
-  get '/auth/twitter/callback' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
+
+  match '/logout', to: 'sessions#destroy', via: [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

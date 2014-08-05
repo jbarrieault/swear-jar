@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   has_many :tweets, through: :violations
 
   def assign_triggers(triggers)
-    triggers = triggers.split(",").map(&:strip)
+    triggers = triggers.split(",").map(&:strip).uniq
     triggers.each do |t|
       self.triggers.build(name: t).save
     end
