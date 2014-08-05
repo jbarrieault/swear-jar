@@ -1,5 +1,3 @@
-# jacob = User.new(name: "jacob", twitter_id: 1961118786 )
-
 class User < ActiveRecord::Base
   has_many :user_groups
   has_many :groups, through: :user_groups
@@ -69,26 +67,22 @@ class User < ActiveRecord::Base
     return tweet_batch.map! { |t| t if t.id > self.book_end }.compact!
   end
 
-  # scan_tweets every 20? minutes
   def scan_tweets
-    #raw_tweets = ["App Academy...Sucks!", "Shit man", "When is ice cream time?"]
     groups = self.groups.includes(:triggers)
 
     raw_tweets.each do |raw_tweet|
       groups.each do |group|
         group.triggers.each do |trigger|
-          
           if raw_tweet.full_text.downcase.include?(trigger.name.downcase) 
-            binding.pry
-            tweet = Tweet.find_or_create_by(content: raw_tweet.full_text) #, user_id: self.id
-            self.tweets << tweet
-            Violation.create(tweet_id: tweet.id, group_id: group.id)
+            tweet = Tweet.find_or_create_by(content: raw_tweet.full_text)
+
+            self.tweets << tweet unless self.tweets.include?(tweet)
+            Violation.find_or_create_by(tweet_id: tweet.id, group_id: group.id)
           end
         end
       end
     end
     return self
-
   end
 
   def self.create_with_omniauth(info)
