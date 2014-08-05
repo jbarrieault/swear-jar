@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 
   def index
-    @user = User.first # fix this later
+    @user = User.find(session[:user_id]) # current_user
   end
 
   def show

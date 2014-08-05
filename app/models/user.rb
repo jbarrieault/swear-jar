@@ -1,7 +1,7 @@
-TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
-TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
-TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
-TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
+# TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
+# TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
+# TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
+# TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
 # jacob = User.new(name: "jacob", twitter_id: 1961118786 )
 
 class User < ActiveRecord::Base
@@ -12,15 +12,24 @@ class User < ActiveRecord::Base
 
   attr_accessor :last_batch_tweet_id, :client
 
+  TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
+  TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
+  TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
+  TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
+
   # before_create do
   #   create_client
-  #   self.last_batch_tweet_id = @client.user_timeline(self.twitter_id, {count: 1, include_rts: false}).first.id
+  #   self.last_batch_tweet_id = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false}).first.id
   # end
 
   def init
     create_client
-    self.last_batch_tweet_id = @client.user_timeline(self.twitter_id, {count: 1, include_rts: false}).first.id
+    # self.last_batch_tweet_id = @client.user_timeline(self.uid.to_i, {count: 1, include_rts: false}).first.id
+    self.last_batch_tweet_id = 492461693176655872
+  end
 
+  def ten_tweets
+    @client.user_timeline(self.uid.to_i, {count: 10, include_rts: false})
   end
 
   def create_client
@@ -40,16 +49,16 @@ class User < ActiveRecord::Base
 
   def raw_tweets
     tweet_batch = new_tweet_batch
-    binding.pry
-    self.last_batch_tweet_id = tweet_batch.first.id unless tweet_batch.empty?
+    self.last_batch_tweet_id = tweet_batch.first.id unless tweet_batch.nil?
     return tweet_batch
   end
 
   def new_tweet_batch
-    tweet_batch = self.client.user_timeline(self.twitter_id,
-      {count: 40, include_rts: false})
+    binding.pry
+    tweet_batch = self.client.user_timeline(self.uid.to_i,
+      {count: 40, include_rts: false}) #is including retweets anyways, or favorites?
 
-    return tweet_batch.map! { |t| t.full_text unless t.id > self.last_batch_tweet_id }.compact!
+    return tweet_batch.map! { |t| t unless t.id > self.last_batch_tweet_id }.compact!
   end
 
   # scan_tweets every 20? minutes
@@ -60,8 +69,8 @@ class User < ActiveRecord::Base
     raw_tweets.each do |raw_tweet|
       groups.each do |group|
         group.triggers.each do |trigger|
-          if raw_tweet.downcase.include?(trigger.name.downcase) # raw_tweet[:content] ?
-            tweet = Tweet.find_or_create_by(content: raw_tweet, user_id: self.id) #check API for key
+          if raw_tweet.full_text.downcase.include?(trigger.name.downcase) 
+            tweet = Tweet.find_or_create_by(content: raw_tweet.full_text, user_id: self.id) #check API for key
             Violation.create(tweet_id: tweet.id, group_id: group.id)
           end
         end
