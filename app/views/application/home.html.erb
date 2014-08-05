@@ -1,0 +1,8 @@
+yay!
+
+<% if logged_in? %>
+  <%= link_to current_user.name, user_path(current_user) %>
+  <%= link_to 'Log Out', logout_path %>
+<% else %>
+  <%= link_to 'Log In with Twitter', twitter_login_path %>
+<% end %>
