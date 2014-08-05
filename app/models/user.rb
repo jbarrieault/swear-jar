@@ -1,9 +1,8 @@
-TWEETAPPKEY = "hGuIGM9vFCTtVm4DmPCX9RF3E"
-TWEETAPPSECRET = "jxFAyFQNYLW24jmKFO1YkgpBW8XwzH4337XymUEGtf7zxZYiFb"
-TWEETTOKEN = "2604285230-AV99szaeXcEkDxtmpTExERHGmwNmq3DmWraPqF5"
-TWEETTOKENSECRET = "i6gfbMymtyAiU1PeOK5A7UYx58ts5sExsON8SmsPADRGQ"
+TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
+TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
+TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
+TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
 # jacob = User.new(name: "jacob", twitter_id: 1961118786 )
-
 
 class User < ActiveRecord::Base
   has_many :user_groups
@@ -13,14 +12,15 @@ class User < ActiveRecord::Base
 
   attr_accessor :last_batch_tweet_id, :client
 
+  # before_create do
+  #   create_client
+  #   self.last_batch_tweet_id = @client.user_timeline(self.twitter_id, {count: 1, include_rts: false}).first.id
+  # end
+
   def init
     create_client
-
-    # what to do when user joins new group? 
-    # need to set a new @last_batch_tweet_id starting at
-    # or after user joined the new group
     self.last_batch_tweet_id = @client.user_timeline(self.twitter_id, {count: 1, include_rts: false}).first.id
-    return self
+
   end
 
   def create_client
@@ -47,9 +47,9 @@ class User < ActiveRecord::Base
 
   def new_tweet_batch
     tweet_batch = self.client.user_timeline(self.twitter_id,
-      {count: 40, include_rts: false, max_id: self.last_batch_tweet_id})
+      {count: 40, include_rts: false})
 
-    return tweet_batch.map! { |t| t.full_text unless t.id <= self.last_batch_tweet_id }.compact!
+    return tweet_batch.map! { |t| t.full_text unless t.id > self.last_batch_tweet_id }.compact!
   end
 
   # scan_tweets every 20? minutes
