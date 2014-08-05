@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
 
   end
 
+  protected
+
+  def current_user=(user)
+    @current_user = user
+    session[:user_id] = user.nil? ? nil : user.id
+  end
+
 end
