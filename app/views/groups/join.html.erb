@@ -3,7 +3,7 @@
 <%= form_tag groups_join_path do %>  
 
   <% @groups.each do |group| %>
-    <%= check_box_tag "groups[]", group.id %>
+    <%= check_box_tag "groups[]", group.id, group.users.include?(current_user) %>
     <%= label_tag "groups[]", group.name %>
   <% end %>
   

@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
 
     def create
       if auth_hash[:provider] == "twitter"
-        @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name])
+        image_url = auth_hash[:info][:image].gsub("_normal", "")
+        @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url)
         if @user
            session[:user_id] = @user.id
            redirect_to user_path(current_user)

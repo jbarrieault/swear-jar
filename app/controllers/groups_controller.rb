@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     @group.name = params[:name]
+    @group.triggers = []
     @group.assign_triggers(params[:triggers])
     @group.users = []
     @group.assign_users(params[:user])
