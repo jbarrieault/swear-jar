@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
     self.save
   end
 
-
   def join_groups(groups)
     scan_tweets
     groups.each do |g|
@@ -61,6 +60,14 @@ class User < ActiveRecord::Base
 
   def violation_count(group_id)
     self.violations.where(group_id: group_id).count
+  end
+
+  def admin_groups
+    self.groups.where(admin_id: id)
+  end
+
+  def user_groups
+    self.groups.where.not(admin_id: id)
   end
 
 end

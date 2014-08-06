@@ -19,6 +19,8 @@ class GroupsController < ApplicationController
     @group.name = params[:name]
     @group.assign_triggers(params[:triggers])
     @group.assign_users(params[:user])
+    @group.admin_id = session[:user_id]
+    @group.save
     redirect_to groups_path
   end
 
