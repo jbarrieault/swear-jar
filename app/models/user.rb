@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
       config.access_token = ENV['TWEETTOKEN']
       config.access_token_secret = ENV['TWEETTOKENSECRET']
     end
+    binding.pry
   end
 
   def update_bookend 

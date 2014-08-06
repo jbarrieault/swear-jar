@@ -20,10 +20,12 @@ This is a user page!
   <% end %>
 </ul>
 
+<% if @user == current_user %>
 <p>
   <%= link_to "Join a group", groups_join_path %><br>
   <%= link_to "Create a group", new_group_path %>
 </p>
+<% end %>
 
 <% if current_user.venmo_id %>
   You have authorized Venmo 

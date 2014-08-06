@@ -47,10 +47,8 @@ ActiveRecord::Schema.define(version: 20140806004016) do
     t.integer  "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "bookend"
     t.string   "image_url"
+    t.integer  "bookend"
   end
 
   create_table "violations", force: true do |t|
