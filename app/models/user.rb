@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def update_bookend 
-    most_recent   = @client.user_timeline(self.twitter_id.to_i, {count: 1, include_rts: false})
+    most_recent  = @client.user_timeline(self.twitter_id.to_i, {count: 1, include_rts: false})
     self.bookend = most_recent == nil ? 0 : most_recent.first.id #works, in theory
     self.save
   end
