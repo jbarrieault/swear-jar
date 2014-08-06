@@ -20,7 +20,6 @@
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 body {
-  padding-top: 70px;
   padding-bottom: 30px;
 }
 
@@ -32,4 +31,10 @@ body {
 
 .theme-showcase > p > .btn {
   margin: 5px 0;
+}
+
+img.profile_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
 }
