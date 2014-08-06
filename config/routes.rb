@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   patch '/groups/:id/close' => 'groups#close', as: "close_group"
 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

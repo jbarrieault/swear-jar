@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :violations, through: :tweets
 
+  attr_encrypted :token, key: ENV['ATTR_SECRET_KEY']
+
   @@client = nil
 
   def self.create_client

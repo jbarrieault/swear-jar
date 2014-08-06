@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806170741) do
+ActiveRecord::Schema.define(version: 20140806210330) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140806170741) do
     t.datetime "updated_at"
     t.string   "image_url"
     t.integer  "bookend"
+    t.string   "encrypted_token"
   end
 
   create_table "violations", force: true do |t|
