@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   def new_tweet_batch
     tweet_batch = @@client.user_timeline(self.twitter_id.to_i,
       {count: 40, include_rts: false}) 
-    tweets = tweet_batch.map { |t| t if t.id > self.bookend }.compact
+    tweets = tweet_batch.map { |t| t if t.id.to_i > self.bookend.to_i }.compact
     self.bookend = tweets.first.id
     return tweets
   end
