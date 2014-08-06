@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
         image_url = auth_hash[:info][:image].gsub("_normal", "")
         @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url)
         if @user
+          unless @user.bookend
+            User.create_client
+            @user.set_bookend
+          end
            session[:user_id] = @user.id
            redirect_to user_path(current_user)
          end
