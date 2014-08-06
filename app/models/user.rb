@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
   def scan_tweets
-    groups = self.groups.includes(:triggers)
+    groups = self.active_groups.includes(:triggers)
 
     new_tweet_batch.each do |raw_tweet|
       groups.each do |group|
@@ -57,6 +57,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def admin?(group)
+    !!(group.admin_id == self.id)
+  end
 
   def violation_count(group_id)
     self.violations.where(group_id: group_id).count
@@ -66,8 +69,20 @@ class User < ActiveRecord::Base
     self.groups.where(admin_id: id)
   end
 
+  def admin_groups_active
+    self.groups.where(admin_id: id, active: true)
+  end
+
+  def admin_groups_closed
+    self.groups.where(admin_id: id, active: false)
+  end
+
   def user_groups
     self.groups.where.not(admin_id: id)
+  end
+
+  def active_groups
+    self.groups.where(active: true)
   end
 
 end

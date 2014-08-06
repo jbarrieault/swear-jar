@@ -48,4 +48,18 @@ class GroupsController < ApplicationController
     @user.join_groups(params[:groups])
   end
 
+  def close
+    # binding.pry
+    @group = Group.find(params[:group_id])
+    @group.active = false if current_user.id == @group.admin_id 
+    @group.save
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    @group = Group.find(params[:group_id])
+    @group.destroy if current_user.id == @group.admin_id 
+    redirect_to user_path(current_user)
+  end
+
 end

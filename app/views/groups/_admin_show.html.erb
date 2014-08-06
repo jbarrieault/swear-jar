@@ -1,0 +1,1 @@
+<li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %> | <%= link_to "Close Group", close_group_path(group_id: group.id), method: "patch" %> | <%= link_to "Delete Group", group_path(group_id: group.id), method: "delete" %></li>

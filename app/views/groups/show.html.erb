@@ -15,3 +15,11 @@ This is the show page!
   <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>
 <% end %>
 </ul>
+<% if current_user.admin?(@group)%>
+  <% if @group.active  %>
+    <%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch"%> 
+  <% else %>
+    Close Group
+  <% end %>|
+  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %>
+<% end %>

@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   get '/auth/venmo', as: 'venmo_login'
   
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-
-
   match '/logout', to: 'sessions#destroy', via: [:get, :post]
+
+  patch '/groups/:id/close' => 'groups#close', as: "close_group"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
