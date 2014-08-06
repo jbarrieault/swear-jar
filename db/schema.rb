@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805150551) do
+ActiveRecord::Schema.define(version: 20140805215551) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140805150551) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "bookend"
   end
 
   create_table "violations", force: true do |t|

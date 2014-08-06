@@ -4,48 +4,31 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :violations, through: :tweets
 
-  attr_accessor :book_end, :client
-
-  TWEETAPPKEY = "oPifycUU3xuvVdi8ImqG8TxdP"
-  TWEETAPPSECRET = "m0QhdE7oHwN5IAH3uDzw6nmScJ7916KsdP1ugJaxwpmltnJmgU"
-  TWEETTOKEN = "216539188-7lK5XMLAa2eVqaKnVrl89M1pCf6FhCb3y0A8Hpds"
-  TWEETTOKENSECRET = "Tg6W5MgJD60oWOU3C8Mgeu7KmExwbWhSlQggX8dtCnwKZ"
+  attr_accessor :client
 
   # call @user.scan_tweets RIGHT before adding user to a new group
   # Call @user.init in sessions controller 
   def init  
     create_client
-
-    set_book_end
+    update_bookend
     self
   end
 
   def create_client
     @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = TWEETAPPKEY
-      config.consumer_secret = TWEETAPPSECRET
-      config.access_token = TWEETTOKEN
-      config.access_token_secret = TWEETTOKENSECRET
+      config.consumer_key = ENV['TWEETAPPKEY']
+      config.consumer_secret = ENV['TWEETAPPSECRET']
+      config.access_token = ENV['TWEETTOKEN']
+      config.access_token_secret = ENV['TWEETTOKENSECRET']
     end
   end
 
-  def set_book_end 
+  def update_bookend 
     most_recent   = @client.user_timeline(self.twitter_id.to_i, {count: 1, include_rts: false})
-    self.book_end = most_recent == nil ? 0 : most_recent.first.id #works, in theory
+    self.bookend = most_recent == nil ? 0 : most_recent.first.id #works, in theory
+    self.save
   end
 
-  def ten_tweets
-    @client.user_timeline(self.twitter_id.to_i, {count: 10, include_rts: false})
-  end
-
-  def create_client
-    @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = TWEETAPPKEY
-      config.consumer_secret = TWEETAPPSECRET
-      config.access_token = TWEETTOKEN
-      config.access_token_secret = TWEETTOKENSECRET
-    end
-  end
 
   def join_groups(groups)
     #NEED TO SCAN TWEETS ON THIS LINE
@@ -57,14 +40,14 @@ class User < ActiveRecord::Base
 
   def raw_tweets
     tweet_batch = new_tweet_batch
-    set_book_end unless tweet_batch.nil?
+    update_bookend unless tweet_batch.nil?
     return tweet_batch
   end
 
   def new_tweet_batch
     tweet_batch = self.client.user_timeline(self.twitter_id.to_i,
-      {count: 40, include_rts: false}) #is including retweets anyways, or favorites?
-    return tweet_batch.map! { |t| t if t.id > self.book_end }.compact!
+      {count: 40, include_rts: false}) 
+    return tweet_batch.map! { |t| t if t.id > self.bookend }.compact!
   end
 
   def scan_tweets
