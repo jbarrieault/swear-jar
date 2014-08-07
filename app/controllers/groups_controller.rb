@@ -15,10 +15,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    p "made it!"
-    binding.pry
     @group = Group.new
-    @group.name = params[:name]
+    @group.name = params[:name] # mass assign
     @group.assign_triggers(params[:triggers])
     @group.assign_users(params[:user])
     @group.admin_id = session[:user_id]
@@ -51,9 +49,8 @@ class GroupsController < ApplicationController
   end
 
   def close
-    # binding.pry
     @group = Group.find(params[:group_id])
-    @group.active = false if current_user.id == @group.admin_id 
+    @group.activate(current_user) 
     @group.save
     redirect_to user_path(current_user)
   end

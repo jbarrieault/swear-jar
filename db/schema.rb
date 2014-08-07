@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806210330) do
+ActiveRecord::Schema.define(version: 20140807191848) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20140806210330) do
     t.datetime "updated_at"
     t.integer  "admin_id"
     t.boolean  "active",     default: true
+    t.integer  "balance",    default: 0
+  end
+
+  create_table "trigger_violations", force: true do |t|
+    t.integer  "trigger_id"
+    t.integer  "violation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "triggers", force: true do |t|

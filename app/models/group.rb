@@ -18,4 +18,8 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def activate(user)
+    self.active = false if user.id == self.admin_id 
+  end
+
 end

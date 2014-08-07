@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
            redirect_to user_path(current_user)
          end
       elsif auth_hash[:provider] == "venmo"
-        # binding.pry
         current_user.venmo_id = auth_hash[:uid]
         current_user.token = auth_hash[:credentials][:token]
         current_user.save
