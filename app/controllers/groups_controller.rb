@@ -15,6 +15,8 @@ class GroupsController < ApplicationController
   end
 
   def create
+    p "made it!"
+    binding.pry
     @group = Group.new
     @group.name = params[:name]
     @group.assign_triggers(params[:triggers])

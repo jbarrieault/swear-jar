@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '2.1.2'
+gem 'faraday'
+gem 'oj'
 gem 'twitter'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
@@ -23,6 +25,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-venmo'
 gem 'figaro'
+gem 'typhoeus'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development

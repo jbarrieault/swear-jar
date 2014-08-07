@@ -6,15 +6,23 @@ class Violation < ActiveRecord::Base
 
   AMOUNT = 0.01
 
-# https://api.venmo.com/v1/payments?user_id=1467765999271936020&amount=0.4&note=pleasedontwork&access_token=NujR7JM988nv4uzrgPKWPRFVs9nFErLc"
-
   def charge_the_user
     user = self.tweet.user
     admin_venmo_id = User.find(self.group.admin_id).venmo_id
     amount = AMOUNT
     note = URI.escape("I said something stupid on twitter")
     access_token = user.token
-    url = "https://api.venmo.com/v1/payments?user_id=#{admin_venmo_id}&amount=#{amount}&note=#{note}&access_token=#{access_token}"
+    
+    conn = Faraday.new(:url => 'https://api.venmo.com') do |faraday|
+      faraday.request  :url_encoded 
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
+
+    response = conn.post '/v1/payments', { user_id: admin_venmo_id, amount: amount, note: note, access_token: access_token}
+
+    #parsed = Oj.load(response.body, symbol_keys: true)
   end
+
 
 end
