@@ -11,11 +11,6 @@
     <%= label_tag "Triggers" %>
     <%= text_field_tag "triggers"%>
   </p>
-
-  <% @users.each do |user| %>
-    <%= check_box_tag "user[]", user.id %>
-    <%= label_tag "user[]", user.name %>
-  <% end %>
   
   <p>
     <%= submit_tag "Create group" %>
