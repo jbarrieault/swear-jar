@@ -6,8 +6,9 @@
 [x]add balance for groups
 [x]tweets error
 [x]set venmo note message - fix time?
+[x]join a group
 [ ]Fix view permissions
-[ ]join a group
+
 [ ]limit $ deducted from users account
 [ ]notifications
 [ ]Dashboard

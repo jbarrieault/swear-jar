@@ -44,8 +44,9 @@ class GroupsController < ApplicationController
   end
 
   def join_groups
-    @user = User.find(1)
+    @user = User.find(current_user)
     @user.join_groups(params[:groups])
+    redirect_to user_path(current_user)
   end
 
   def close

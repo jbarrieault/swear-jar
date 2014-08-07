@@ -14,7 +14,7 @@ class Violation < ActiveRecord::Base
       amount = AMOUNT
       words = self.triggers.pluck(:name).join(" and ")
       time = self.tweet.created_at.strftime("%I:%M:%S %p")
-      note = "I said #{words} on twitter around #{time}"
+      note = "I said #{words} on twitter around #{time}. auto-payment via swear-jar"
       access_token = user.token
       
       conn = Faraday.new(:url => 'https://api.venmo.com') do |faraday|

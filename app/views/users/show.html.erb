@@ -35,9 +35,3 @@ This is a user page!
   <%= link_to "Create a group", new_group_path %>
 </p>
 <% end %>
-
-<% if current_user.venmo_id %>
-  You have authorized Venmo 
-<% else %>
-  <%= link_to 'Authorize Venmo', venmo_login_path %>
-<% end %>

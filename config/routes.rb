@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   root 'application#home'
   get '/auth/twitter', as: 'twitter_login'
   get '/auth/venmo', as: 'venmo_login'
+
+  get '/venmo' => 'users#venmo'
   
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match '/logout', to: 'sessions#destroy', via: [:get, :post]
