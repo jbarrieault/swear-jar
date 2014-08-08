@@ -63,7 +63,12 @@ class User < ActiveRecord::Base
             end
           end
           if violations_created && i == group.triggers.length - 1
-            v.charge_the_user
+            if self.over_limit?
+              v.amt_charged = 0
+            else
+              v.amt_charged = group.amount
+              v.charge_the_user
+            end
           end
         end
       end
@@ -96,6 +101,47 @@ class User < ActiveRecord::Base
 
   def active_groups
     self.groups.where(active: true)
+  end
+
+  def rolling_monthly_balance
+    balance = 0
+    self.violations.where('created_at >= ?', 1.month.ago).each do |violation|
+      balance += violation.amt_charged
+    end
+    return balance
+  end
+
+  def total_balance
+    balance = 0
+    self.violations.each do |violation|
+      balance += violation.amt_charged
+    end
+    return balance
+  end
+
+  def over_limit?
+    !!(rolling_monthly_balance >= 2000)
+  end
+
+  def venmo_token_valid?
+    return false if self.encrypted_token == nil
+
+    access_token = self.token
+    conn = Faraday.new(:url => 'https://api.venmo.com') do |faraday|
+        faraday.request  :url_encoded 
+        faraday.response :logger
+        faraday.adapter  Faraday.default_adapter
+      end
+
+    response = conn.get '/v1/me', { access_token: access_token}
+
+    if response.status == 200 
+        return true
+    else
+        self.encrypted_token = nil
+        self.save
+        return false
+    end
   end
 
 end

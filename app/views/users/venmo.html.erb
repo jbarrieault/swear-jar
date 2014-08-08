@@ -1,5 +1,5 @@
 
-<% if current_user.venmo_id %>
+<% if current_user.encrypted_token %>
   You have authorized Venmo 
 <% else %>
   <%= link_to 'Authorize Venmo', venmo_login_path %>
