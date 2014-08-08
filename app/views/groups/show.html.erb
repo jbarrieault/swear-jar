@@ -22,5 +22,11 @@ This is the show page!
   <% else %>
     Close Group
   <% end %>|
-  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %>
+  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %><br>
+  <% if @group.refunded == false %>
+    <em>Didn't raise enough?</em><br>
+    <%= link_to "Click here to refund all group members", refund_group_path(group_id: @group.id) %>
+  <% else %>
+    You have already issued a refund for this group
+  <% end %>
 <% end %>

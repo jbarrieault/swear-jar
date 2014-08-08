@@ -25,8 +25,12 @@
   [x]make new close group page
     [x]display: group closed, what you can use the jar fund for
     [x]options: refund users, delete group, back to group page
-  [ ]find # of violations per user
-  [ ]find amount
-  [ ]calculate total owed for each user
-  [ ]check to make sure it is the correct amount (all user totals should == group total)
-  [ ]pay all of the users with venmo
+  [x]find # of violations per user
+  [x]find amount
+  [x]calculate total owed for each user
+  [x]check to make sure it is the correct amount (all user totals should == group total)
+  [x]pay all of the users with venmo
+
+  FIXES:
+  [x]change status after refunding members? (should not refund multiple times)
+  [x]make sure user is admin before refunding

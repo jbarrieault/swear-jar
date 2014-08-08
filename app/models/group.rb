@@ -34,11 +34,12 @@ class Group < ActiveRecord::Base
 
   def refund_all
     self.users.each do |user|
-      payment_due = user.violation_count(self.id) * self.amount
+      payment_due = user.group_balance(self)
       refund_user(user, payment_due) unless user.id == self.admin_id
-      self.balance -= payment_due
-      self.save
     end
+    self.refunded = true
+    self.active = false
+    self.save
   end
 
   def refund_user(user, payment_due)

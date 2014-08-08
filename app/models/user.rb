@@ -70,6 +70,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def group_balance(group)
+    self.violations.where(group_id: group.id).inject do |sum, v| 
+      sum += v.amt_charged 
+    end
+  end
+
   def admin?(group)
     !!(group.admin_id == self.id)
   end

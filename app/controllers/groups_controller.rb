@@ -64,10 +64,16 @@ class GroupsController < ApplicationController
 
   def refund
     @group = Group.find(params[:group_id])
-    @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
-    @group.refund_all
-    @group.save
-    redirect_to group_path
+    if @group.refunded == false
+      @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
+      @group.refund_all
+      @group.save
+      flash[:notice] = "You have issued a refund to each member of the group"
+      redirect_to group_path
+    else
+      flash[:notice] = "This group has already been issued a refund" 
+      redirect_to group_path
+    end
   end
 
   def destroy
@@ -75,6 +81,5 @@ class GroupsController < ApplicationController
     @group.destroy if current_user.id == @group.admin_id 
     redirect_to user_path(current_user)
   end
-
 
 end
