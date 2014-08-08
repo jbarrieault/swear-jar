@@ -1,8 +1,8 @@
 This is the show page!
 
 <h1><%= @group.name %></h1>
+<p><strong>Status:</strong> <%= @group.status %></p>
 <%= @triggers.pluck(:name) %>
-
 <ul>
   <% @group.tweets.each do |tweet| %>
     <li><%= tweet.content %> | By: <%= tweet.user.name %> | Violation: XXX</li>
@@ -10,7 +10,7 @@ This is the show page!
 </ul>
 
 <h2>Put some graphs and shit here</h2>
-<h3>Jarfund: <%= number_to_currency(@group.balance/100.0) %> (<%= User.find(@group.admin_id).name %>)</h3>
+<h3>Jarfund: <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)</h3>
 <ul>
 <% @group.users.each do |user| %>
   <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>

@@ -51,9 +51,23 @@ class GroupsController < ApplicationController
 
   def close
     @group = Group.find(params[:group_id])
-    @group.activate(current_user) 
+    @group.active = false if current_user.id == @group.admin_id 
     @group.save
-    redirect_to user_path(current_user)
+    redirect_to closed_group_path(@group)
+  end
+
+  def closed
+    @group = Group.find(params[:id])
+    @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
+    @group.fund_name = "Party Fund" #THIS IS SET TEMPORARILY, DELETE!!!
+  end
+
+  def refund
+    @group = Group.find(params[:group_id])
+    @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
+    @group.refund_all
+    @group.save
+    redirect_to group_path
   end
 
   def destroy
@@ -61,5 +75,6 @@ class GroupsController < ApplicationController
     @group.destroy if current_user.id == @group.admin_id 
     redirect_to user_path(current_user)
   end
+
 
 end

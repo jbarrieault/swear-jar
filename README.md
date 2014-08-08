@@ -18,8 +18,15 @@
     [ ]someone joins a group you own
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
 [ ]design shit - MITCH
-[ ]admin refund button - MITCH
 [ ]About page (maybe just index w/ app definition)
 [ ]Dashboard
 
-###styles
+[ ]admin refund button - MITCH when the admin closes a group, they have the option to refund the users
+  [x]make new close group page
+    [x]display: group closed, what you can use the jar fund for
+    [x]options: refund users, delete group, back to group page
+  [ ]find # of violations per user
+  [ ]find amount
+  [ ]calculate total owed for each user
+  [ ]check to make sure it is the correct amount (all user totals should == group total)
+  [ ]pay all of the users with venmo

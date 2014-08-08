@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match '/logout', to: 'sessions#destroy', via: [:get, :post]
 
+  get 'groups/:id/closed' => 'groups#closed', as: "closed_group"
+  get 'groups/:id/refund' => 'groups#refund', as: "refund_group"
   patch '/groups/:id/close' => 'groups#close', as: "close_group"
 
 

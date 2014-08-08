@@ -1,0 +1,27 @@
+<h1>
+  <%= @group.name.upcase %> has been closed
+</h1>
+
+<p>
+  This group is closed. We will no longer track your tweets, or charge you for saying <strong><%= @group.triggers.pluck(:name).join(", ") %></strong>.
+</p>
+
+<p>
+  <strong>Group Name:</strong> <%= @group.name %><br>
+  <strong>Status:</strong> <%= @group.status %><br>
+  <strong>Trigger words:</strong> <%= @group.triggers.pluck(:name).join(", ") %><br>
+  <strong>Trigger penalty:</strong> <%= number_to_currency(@group.dollar_amount) %><br>
+  <strong>Funds raised for:</strong> <%= @group.fund_name %><br>
+  <strong>Amount raised:</strong> <%= number_to_currency(@group.dollar_balance) %><br>
+  <strong>Group members:</strong> <%= @group.users.pluck(:name).join(", ") %>
+
+</p>
+
+<p>
+  <%= link_to "Return to Group Page", group_path %> | 
+  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %>
+</p>
+<p>
+  <em>Didn't raise enough?</em><br>
+  <%= link_to "Click here to refund all group members", refund_group_path(group_id: @group.id) %>
+</p>
