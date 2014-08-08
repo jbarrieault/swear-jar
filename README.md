@@ -10,6 +10,7 @@
 [ ]Fix view permissions
 [ ]sanitize trigger input
 [ ]limit $ deducted from users account
+[ ]Venmo authorization check
 [ ]notifications
 [ ]Dashboard
 [ ]About page
