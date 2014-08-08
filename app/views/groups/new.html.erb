@@ -8,6 +8,11 @@
   </p>
 
   <p>
+    <%= label_tag "purpose" %>
+    <%= text_field_tag "purpose" %>
+  </p>
+
+  <p>
     <%= label_tag "amount" %>
     <%= select_tag "amount", options_for_select(@amounts) %>
   </p>

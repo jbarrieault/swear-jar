@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808193338) do
+ActiveRecord::Schema.define(version: 20140808202054) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140808193338) do
     t.integer  "balance",    default: 0
     t.integer  "amount",     default: 0
     t.boolean  "refunded",   default: false
+    t.string   "purpose"
   end
 
   create_table "trigger_violations", force: true do |t|

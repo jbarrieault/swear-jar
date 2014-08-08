@@ -11,7 +11,7 @@
   <strong>Status:</strong> <%= @group.status %><br>
   <strong>Trigger words:</strong> <%= @group.triggers.pluck(:name).join(", ") %><br>
   <strong>Trigger penalty:</strong> <%= number_to_currency(@group.dollar_amount) %><br>
-  <strong>Funds raised for:</strong> <%= @group.fund_name %><br>
+  <strong>Funds raised for:</strong> <%= @group.purpose %><br>
   <strong>Amount raised:</strong> <%= number_to_currency(@group.dollar_balance) %><br>
   <strong>Group members:</strong> <%= @group.users.pluck(:name).join(", ") %>
 

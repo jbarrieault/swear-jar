@@ -18,7 +18,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new
     @group.name = params[:name] 
-    @group.amount = params[:amount].to_i
+    @group.purpose = params[:purpose] 
+    @group.amount = params[:amount].to_i unless params[:amount].to_i > 100
     @group.assign_triggers(params[:triggers])
     current_user.scan_tweets
     @group.users << current_user
@@ -34,11 +35,9 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.name = params[:name]
-    @group.triggers = []
-    @group.assign_triggers(params[:triggers]) # not needed, we don't permit this aymore?
-    @group.users = []
-    @group.assign_users(params[:user])
+    @group.name = params[:name] 
+    @group.purpose = params[:purpose] 
+    @group.save
     redirect_to groups_path
   end
 
