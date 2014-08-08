@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(version: 20140807191848) do
     t.integer  "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+    t.string   "provider"
+    t.string   "uid"
     t.integer  "bookend"
+    t.string   "image_url"
     t.string   "encrypted_token"
   end
 

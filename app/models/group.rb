@@ -1,12 +1,13 @@
 class Group < ActiveRecord::Base
   has_many :user_groups
   has_many :users, through: :user_groups
-  has_many :triggers
+  has_many :triggers 
   has_many :violations
   has_many :tweets, through: :violations
 
   def assign_triggers(triggers)
-    triggers = triggers.split(",").map(&:strip).uniq
+    #triggers now comes in as array
+    triggers = triggers.map(&:strip).uniq
     triggers.each do |t|
       self.triggers.build(name: t).save
     end
