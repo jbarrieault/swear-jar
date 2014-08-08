@@ -12,11 +12,13 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @users = User.all
+    @amounts = [["$0.01", 1], ["$0.10", 10], ["$0.25", 25], ["$0.50", 50], ["$1.00", 100]]
   end
 
   def create
     @group = Group.new
     @group.name = params[:name] 
+    @group.amount = params[:amount].to_i
     @group.assign_triggers(params[:triggers])
     current_user.scan_tweets
     @group.users << current_user
@@ -59,14 +61,11 @@ class GroupsController < ApplicationController
 
   def closed
     @group = Group.find(params[:id])
-    @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
-    @group.fund_name = "Party Fund" #THIS IS SET TEMPORARILY, DELETE!!!
   end
 
   def refund
     @group = Group.find(params[:group_id])
     if @group.refunded == false
-      @group.amount = 2 #THIS IS SET TEMPORARILY, DELETE!!!
       @group.refund_all
       @group.save
       flash[:notice] = "You have issued a refund to each member of the group"

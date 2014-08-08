@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   has_many :violations
   has_many :tweets, through: :violations
 
-  attr_accessor :fund_name, :amount #TEMP_SETTINGS, DELETE!!!!
+  attr_accessor :fund_name
 
   def assign_triggers(triggers)
     triggers = triggers.map(&:strip).uniq.reject {|t| t.empty? }

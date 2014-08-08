@@ -10,7 +10,13 @@ This is the show page!
 </ul>
 
 <h2>Put some graphs and shit here</h2>
-<h3>Jarfund: <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)</h3>
+<h3>Jarfund: 
+  <% if @group.refunded == false %>
+    <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)
+  <% else %>
+    <s><%= number_to_currency(@group.dollar_balance) %></s> REFUNDED (<%= User.find(@group.admin_id).name %>)
+  <% end %>
+</h3>
 <ul>
 <% @group.users.each do |user| %>
   <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>

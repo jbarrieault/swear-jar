@@ -7,6 +7,11 @@
     <%= text_field_tag "name"%>
   </p>
 
+  <p>
+    <%= label_tag "amount" %>
+    <%= select_tag "amount", options_for_select(@amounts) %>
+  </p>
+
   <div id="triggers">
     <%= label_tag "triggers" %>
     <p class="trigger">

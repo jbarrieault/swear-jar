@@ -74,9 +74,9 @@ class User < ActiveRecord::Base
             else
               v.amt_charged = group.amount
               v.save
-              # v.charge_the_user
-              group.balance += group.amount
-              group.save
+              v.charge_the_user
+              # group.balance += group.amount
+              # group.save
             end
           end
         end
@@ -85,9 +85,11 @@ class User < ActiveRecord::Base
   end
 
   def group_balance(group)
-    self.violations.where(group_id: group.id).inject do |sum, v| 
-      sum += v.amt_charged 
+    balance = 0
+    self.violations.where(group_id: group.id).each do |v| 
+      balance += v.amt_charged 
     end
+    return balance
   end
 
   def admin?(group)
