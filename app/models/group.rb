@@ -6,8 +6,7 @@ class Group < ActiveRecord::Base
   has_many :tweets, through: :violations
 
   def assign_triggers(triggers)
-    #triggers now comes in as array
-    triggers = triggers.map(&:strip).uniq
+    triggers = triggers.map(&:strip).uniq.reject {|t| t.empty? }
     triggers.each do |t|
       self.triggers.build(name: t).save
     end

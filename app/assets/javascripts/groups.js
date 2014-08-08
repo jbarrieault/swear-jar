@@ -1,24 +1,33 @@
 $(function(){
-  $('.trigger+').click(function(e){
-    // e.preventDefault();
-    var newTriggerInput;
-    newTriggerInput = $(this).clone();
+  $('#triggers').on('click', '.add-trigger', function(){
+    var newTriggerBox;
+    newTriggerBox = $(this).closest('p.trigger').clone();
+    newTriggerBox.find('input').val('');
+    
+    $(this).closest('div#triggers').
+      append(newTriggerBox);
+    
+    // perhaps made the input hidden after
+    // and populate an element with just the text?
+    $(this).closest('p.trigger').
+       append('<button class="remove-trigger" type="button">-</button>');
     
     $(this).fadeOut('fast').remove();
-    $(this).closest('p.trigger').
-       append('<button class="trigger-" type="button">-</button>');
- 
-    $(this).closest('div#triggers').
-      append(newTriggerInput);
-    });
+
+    // $(this).fadeOut('fast', function(){
+    //   this.remove();
+    // });
+  });
 
 
-    $('.trigger-').click(function(e){
-      // e.preventDefault();
+
+    $('#triggers').on('click', '.remove-trigger', function(){
       // bottom input should always be empty with a + button
-      
+     
       $(this).closest('p.trigger').
-        remove(); //make sure not in params
+        fadeOut(200, function(){
+          this.remove()
+        }); //make sure not in params
       
     });
 
