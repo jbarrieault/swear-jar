@@ -2,6 +2,8 @@
 
 ## todo
 
+hi - Jacob
+
 [x]set auto payments
 [x]add balance for groups
 [x]tweets error
