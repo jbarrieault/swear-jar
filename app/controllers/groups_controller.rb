@@ -18,6 +18,7 @@ class GroupsController < ApplicationController
     @group = Group.new
     @group.name = params[:name] # mass assign
     @group.assign_triggers(params[:triggers])
+    current_user.scan_tweets
     @group.users << current_user
     @group.admin_id = session[:user_id]
     @group.save

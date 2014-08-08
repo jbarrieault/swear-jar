@@ -54,12 +54,10 @@ ActiveRecord::Schema.define(version: 20140808143952) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "twitter_id"
-    t.integer  "venmo_id"
+    t.string   "twitter_id"
+    t.string   "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "bookend"
     t.string   "image_url"
     t.string   "encrypted_token"

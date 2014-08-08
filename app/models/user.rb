@@ -37,13 +37,13 @@ class User < ActiveRecord::Base
       {count: 40, include_rts: false}) 
     raw_tweets = tweet_batch.map { |t| t if t.id.to_i > self.bookend.to_i }.compact
     self.bookend = raw_tweets.first.id unless raw_tweets == []
+    self.save
     return raw_tweets
   end
 
   def scan_tweets
     groups = self.active_groups.includes(:triggers)
-
-    new_tweet_batch.each do |raw_tweet|
+    new_tweet_batch.reverse.each do |raw_tweet|
       groups.each do |group|
         violations_created = false
         group.triggers.each_with_index do |trigger, i|
@@ -62,12 +62,21 @@ class User < ActiveRecord::Base
               v.save
             end
           end
-          if violations_created && i == group.triggers.length - 1
-            if self.over_limit?
+          if violations_created && i == group.triggers.length - 1 
+            v = Violation.find_by(tweet_id: Tweet.find_by(content: raw_tweet.full_text).id, group_id: group.id)
+            if !(self.venmo_token_valid?)
               v.amt_charged = 0
+              v.save
+            elsif self.over_limit?
+              binding.pry
+              v.amt_charged = 0
+              v.save
             else
               v.amt_charged = group.amount
-              v.charge_the_user
+              v.save
+              # v.charge_the_user
+              group.balance += group.amount
+              group.save
             end
           end
         end
@@ -105,8 +114,8 @@ class User < ActiveRecord::Base
 
   def rolling_monthly_balance
     balance = 0
-    self.violations.where('created_at >= ?', 1.month.ago).each do |violation|
-      balance += violation.amt_charged
+    self.violations.where('violations.created_at >= ?', 1.month.ago).each do |violation|
+      balance += violation.amt_charged if violation.amt_charged
     end
     return balance
   end
@@ -114,13 +123,13 @@ class User < ActiveRecord::Base
   def total_balance
     balance = 0
     self.violations.each do |violation|
-      balance += violation.amt_charged
+      balance += violation.amt_charged 
     end
     return balance
   end
 
   def over_limit?
-    !!(rolling_monthly_balance >= 2000)
+    !!(rolling_monthly_balance >= 5)
   end
 
   def venmo_token_valid?
