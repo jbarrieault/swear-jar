@@ -15,6 +15,7 @@ hi - Jacob
 [x]sanitize trigger input - JACOBO ($ amount[drop down], fund purpose/goal)
   [x]jar name/reason
 [x]Set $ amount in create group - JACOB
+[ ]Sanitize tweet bodies
 [ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH
     [ ]join/leave group
     [ ]someone joins a group you own
