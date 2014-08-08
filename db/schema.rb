@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807191848) do
+ActiveRecord::Schema.define(version: 20140808143952) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140807191848) do
     t.integer  "admin_id"
     t.boolean  "active",     default: true
     t.integer  "balance",    default: 0
+    t.integer  "amount"
   end
 
   create_table "trigger_violations", force: true do |t|
@@ -53,13 +54,11 @@ ActiveRecord::Schema.define(version: 20140807191848) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "twitter_id"
-    t.integer  "venmo_id"
+    t.string   "twitter_id"
+    t.string   "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "bookend"
+    t.string   "bookend"
     t.string   "image_url"
     t.string   "encrypted_token"
   end
@@ -69,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140807191848) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "amt_charged"
   end
 
 end

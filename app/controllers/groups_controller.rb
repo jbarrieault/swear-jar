@@ -15,10 +15,10 @@ class GroupsController < ApplicationController
   end
 
   def create
-    binding.pry
     @group = Group.new
     @group.name = params[:name] 
     @group.assign_triggers(params[:triggers])
+    current_user.scan_tweets
     @group.users << current_user
     @group.admin_id = session[:user_id]
     @group.save
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.name = params[:name]
     @group.triggers = []
-    @group.assign_triggers(params[:triggers]) # not needed
+    @group.assign_triggers(params[:triggers]) # not needed, we don't permit this aymore?
     @group.users = []
     @group.assign_users(params[:user])
     redirect_to groups_path
