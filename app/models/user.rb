@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def scan_tweets
+    valid = self.venmo_token_valid?
     groups = self.active_groups.includes(:triggers)
     new_tweet_batch.reverse.each do |raw_tweet|
       groups.each do |group|
@@ -64,7 +65,7 @@ class User < ActiveRecord::Base
           end
           if violations_created && i == group.triggers.length - 1 
             v = Violation.find_by(tweet_id: Tweet.find_by(content: raw_tweet.full_text).id, group_id: group.id)
-            if !(self.venmo_token_valid?)
+            if !(valid)
               v.amt_charged = 0
               v.save
             elsif self.over_limit?
@@ -137,7 +138,7 @@ class User < ActiveRecord::Base
   end
 
   def over_limit?
-    !!(rolling_monthly_balance >= 5)
+    !!(rolling_monthly_balance >= 2000)
   end
 
   def venmo_token_valid?

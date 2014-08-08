@@ -2,6 +2,7 @@ This is the show page!
 
 <h1><%= @group.name %></h1>
 <p><strong>Status:</strong> <%= @group.status %></p>
+<p><strong>Purpose:</strong> <%= @group.purpose %></p>
 <%= @triggers.pluck(:name) %>
 <ul>
   <% @group.tweets.each do |tweet| %>
