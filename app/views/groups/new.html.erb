@@ -7,13 +7,15 @@
     <%= text_field_tag "name"%>
   </p>
 
-  <p>
-    <%= label_tag "Triggers" %>
-    <%= text_field_tag "triggers"%>
-  </p>
-  
+  <div id="triggers">
+    <%= label_tag "triggers" %>
+    <p class="trigger">
+      <input name="triggers[]" type="text" placeholder="add a trigger">
+    <button class="add-trigger" type="button">+</button ></p>
+  </div>
+
   <p>
     <%= submit_tag "Create group" %>
-</p>
+  </p>
 
 <% end %>

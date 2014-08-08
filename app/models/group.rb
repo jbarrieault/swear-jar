@@ -1,14 +1,14 @@
 class Group < ActiveRecord::Base
   has_many :user_groups
   has_many :users, through: :user_groups
-  has_many :triggers
+  has_many :triggers 
   has_many :violations
   has_many :tweets, through: :violations
 
   attr_accessor :fund_name, :amount #TEMP_SETTINGS, DELETE!!!!
 
   def assign_triggers(triggers)
-    triggers = triggers.split(",").map(&:strip).uniq
+    triggers = triggers.map(&:strip).uniq.reject {|t| t.empty? }
     triggers.each do |t|
       self.triggers.build(name: t).save
     end
