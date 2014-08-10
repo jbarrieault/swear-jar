@@ -1,6 +1,10 @@
 class Message < ActiveRecord::Base
   belongs_to :user
 
+  def viewed?
+    self.view_count > 1 
+  end
+
   def self.join_group(group, user)
     message = "#{user.name.capitalize} has joined #{group.name}"
     group.users.each do |u|
@@ -31,6 +35,13 @@ class Message < ActiveRecord::Base
     message = "#{group.admin.name} has deleted #{group.name}."
     group.users.each do |user|
       user.messages.build(content: message).save unless user == group.admin
+    end
+  end
+
+  def self.increment_view_count(user) 
+    user.messages.each do |message|
+      message.view_count += 1 unless message.view_count > 1 
+      message.save
     end
   end
 

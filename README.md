@@ -17,12 +17,12 @@ hi - Jacob
 [x]Set $ amount in create group - JACOB
 [x]Add group-trigger autofocus when pressing 'enter' key - JACOB
 [ ]AJAXy join groups page
-[ ]Limit group-triggers on new group form?
 [ ]Send tweet from swear-jar account @mentioning person you just violated
 [ ]Sanitize tweet bodies
 [ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH
-    [ ]join/leave group
-    [ ]someone joins a group you own
+    [x]join/leave group
+    [x]someone joins a group you own
+    [ ]someone leaves a group
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
 [ ]design shit - MITCH
 [ ]About page (maybe just index w/ app definition)

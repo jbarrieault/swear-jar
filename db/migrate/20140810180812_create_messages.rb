@@ -1,7 +1,7 @@
 class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
-      t.boolean :viewed, default: false
+      t.integer :view_count, default: 0
       t.string  :content
       t.integer :user_id
 

@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action(:set_user)
 
   def index
-    
+    @messages = Message.increment_view_count(@user)
   end
 
   def destroy

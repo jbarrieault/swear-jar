@@ -168,8 +168,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def new_messages
-    self.messages.where(viewed: false).count
+  def new_message_count
+    count = self.messages.select { |message| message.view_count < 2 }.count
+    count = nil if count == 0
+    count
   end
 
 end

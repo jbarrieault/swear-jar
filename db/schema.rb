@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140810180812) do
   end
 
   create_table "messages", force: true do |t|
-    t.boolean  "viewed",     default: false
+    t.integer  "view_count", default: 0
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(version: 20140810180812) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "twitter_id"
-    t.string   "venmo_id"
+    t.integer  "twitter_id"
+    t.integer  "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "bookend"
+    t.integer  "bookend"
     t.string   "image_url"
     t.string   "encrypted_token"
   end
