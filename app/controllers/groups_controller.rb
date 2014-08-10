@@ -42,6 +42,9 @@ class GroupsController < ApplicationController
   end
 
   def join
+    # render list of all groups, 
+    # have check boxes already checked for groups currently in, 
+    # have greyed out check button for inactive groups
     @groups = Group.all
   end
 
