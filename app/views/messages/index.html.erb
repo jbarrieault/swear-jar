@@ -1,0 +1,7 @@
+<h1>Messages</h1>
+
+<ul>
+<% @user.messages.each do |message| %>
+  <li><%= message.content %></li>
+<% end %>
+</ul>

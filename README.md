@@ -15,7 +15,9 @@ hi - Jacob
 [x]sanitize trigger input - JACOBO ($ amount[drop down], fund purpose/goal)
   [x]jar name/reason
 [x]Set $ amount in create group - JACOB
-[ ]Add group-trigger autofocus when pressing 'enter' key - JACOB
+[x]Add group-trigger autofocus when pressing 'enter' key - JACOB
+[ ]AJAXy join groups page
+[ ]Limit group-triggers on new group form?
 [ ]Send tweet from swear-jar account @mentioning person you just violated
 [ ]Sanitize tweet bodies
 [ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH

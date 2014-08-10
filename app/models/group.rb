@@ -5,6 +5,10 @@ class Group < ActiveRecord::Base
   has_many :violations
   has_many :tweets, through: :violations
 
+  def admin
+    User.find(self.admin_id)
+  end
+
   def assign_triggers(triggers)
     triggers = triggers.map(&:strip).uniq.reject {|t| t.empty? }
     triggers.each do |t|
@@ -35,6 +39,8 @@ class Group < ActiveRecord::Base
       payment_due = user.group_balance(self)
       refund_user(user, payment_due) unless user.id == self.admin_id
     end
+    Message.closed_group(self) unless self.active == false
+    Message.refund(self)
     self.refunded = true
     self.active = false
     self.save

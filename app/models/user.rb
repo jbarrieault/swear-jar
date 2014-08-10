@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :user_groups
   has_many :tweets
   has_many :violations, through: :tweets
+  has_many :messages
 
   attr_encrypted :token, key: ENV['ATTR_SECRET_KEY']
 
@@ -27,8 +28,13 @@ class User < ActiveRecord::Base
 
   def join_groups(groups)
     scan_tweets
+
     groups.each do |g|
-      self.groups << Group.find(g) unless self.groups.include?(Group.find(g))
+      group = Group.find(g)
+      unless self.groups.include?(group)
+        self.groups << group 
+        Message.join_group(group, self) 
+      end
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808202054) do
+ActiveRecord::Schema.define(version: 20140810180812) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20140808202054) do
     t.integer  "amount",     default: 0
     t.boolean  "refunded",   default: false
     t.string   "purpose"
+  end
+
+  create_table "messages", force: true do |t|
+    t.boolean  "viewed",     default: false
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "trigger_violations", force: true do |t|

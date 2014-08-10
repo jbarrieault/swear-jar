@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get 'groups/join' => 'groups#join'
   post 'groups/join' => 'groups#join_groups'
 
-  resources :users
+  resources :users do 
+    resources :messages, only: [:index, :destroy]
+  end
+
   resources :groups
   resources :sessions
 
