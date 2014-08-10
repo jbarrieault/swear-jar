@@ -5,6 +5,12 @@ class MessagesController < ApplicationController
     
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    redirect_to user_messages_path
+  end
+
   private
 
     def set_user
