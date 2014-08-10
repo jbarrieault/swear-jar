@@ -21,15 +21,26 @@ $(function(){
   });
 
 
+  $('#triggers').on('click', '.remove-trigger', function(){   
+    // $('div#triggers').find('input').focus();
+    $(this).closest('p').next().find('input').focus();
 
-    $('#triggers').on('click', '.remove-trigger', function(){
-      // bottom input should always be empty with a + button
-     
-      $(this).closest('p.trigger').
-        fadeOut(200, function(){
-          this.remove()
-        }); //make sure not in params
-      
-    });
+    $(this).closest('p.trigger').
+      fadeOut(200, function(){
+        this.remove();
+      });
+
+  });
+
+
+  $('#triggers').on('keydown', 'p.trigger input:focus', function(e){
+
+    if(e.keyCode == 13){
+      e.preventDefault();
+      $(this).closest('p').find('button').click();
+    }
+  });
+
+
 
 });
