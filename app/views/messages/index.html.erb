@@ -3,6 +3,6 @@
 <ul>
 <% @user.messages.each do |message| %>
   <li><%= message.content %> | <%= link_to "Delete", user_message_path(id: message.id), method: 'delete' %></li>
-  <%= message.viewed %>
+  <strong>Viewed?</strong> <%= message.viewed %>
 <% end %>
 </ul>

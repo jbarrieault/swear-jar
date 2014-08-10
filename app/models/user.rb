@@ -168,4 +168,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def new_messages
+    self.messages.where(viewed: false).count
+  end
+
 end
