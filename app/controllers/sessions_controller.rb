@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
 
   def create
     if auth_hash[:provider] == "twitter"
-      image_url = auth_hash[:info][:image].gsub("_normal", "")
-      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url)
+      image_url   = auth_hash[:info][:image].gsub("_normal", "")
+      screen_name = auth_hash[:info][:nickname]
+      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url, screen_name: screen_name)
       if @user
         unless @user.bookend
-          # User.twitter_client
           @user.set_bookend
         end
          session[:user_id] = @user.id

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810180812) do
+ActiveRecord::Schema.define(version: 20140810215954) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -64,13 +64,14 @@ ActiveRecord::Schema.define(version: 20140810180812) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "twitter_id"
-    t.integer  "venmo_id"
+    t.string   "twitter_id"
+    t.string   "venmo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bookend"
+    t.string   "bookend"
     t.string   "image_url"
     t.string   "encrypted_token"
+    t.string   "screen_name"
   end
 
   create_table "violations", force: true do |t|
