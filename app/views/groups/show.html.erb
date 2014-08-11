@@ -2,11 +2,20 @@ This is the show page!
 
 <h1><%= @group.name %></h1>
 
-<% if @membership == "nonmember" %>
-  <%= link_to "Join", groups_join_path(group: {id: @group.id} ), method: "POST", class: "btn btn-primary" %>
-<% elsif @membership == "member" %>
-  <%= link_to "Leave", groups_leave_path(group: {id: @group.id}), method: "POST", class: "btn btn-primary" %>
-<% end %>
+
+<!-- hide this button if admin -->
+<div class="join-leave">
+  <button type="button" id="<%= @group.id %>" class="<%= current_user.membership(@group) %> btn btn-primary"><%= current_user.action_for_group(@group) %>
+  </button>
+</div>
+
+
+<!-- non-ajax -->
+<%# if @membership == "nonmember" %>
+  <%#= link_to "Join", groups_join_path(group: {id: @group.id} ), method: "POST", class: "btn btn-primary" %>
+<%# elsif @membership == "member" %>
+  <%#= link_to "Leave", groups_leave_path(group: {id: @group.id}), method: "POST", class: "btn btn-primary" %>
+<%# end %>
 
 <p><strong>Status:</strong> <%= @group.status %></p>
 <p><strong>Purpose:</strong> <%= @group.purpose %></p>

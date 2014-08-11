@@ -20,10 +20,10 @@ hi - Jacob
   [/]join group button on group show page
 [x]Send tweet from swear-jar account @mentioning person you just violated
 [ ]Sanitize tweet bodies for showing violation
-[ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH
+[X]Notification when you close a group/a group you belong to closes - JACOB/MITCH
     [x]join/leave group
     [x]someone joins a group you own
-    [ ]someone leaves a group
+    [X]someone leaves a group
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
 [ ]design shit - MITCH
 [ ]About page (maybe just index w/ app definition)
