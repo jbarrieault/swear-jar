@@ -1,37 +1,80 @@
-This is a user page!
+<div class="grey-box"></div>
 
-<h1><%= @user.name %></h1>
+<div class="header text-right">
+  <h1>Welcome, <%= @user.name %>!</h1>
+</div>
 
-<%= image_tag @user.image_url, class: "profile_image" %>
+<div class="clearfix"></div>
 
-<h2>Violations!</h2>
+<div class="user-img">
+  <%= image_tag @user.image_url, class: "profile_image" %>
+</div>
 
-<ul>
-  <% @user.violations.each do |violation| %>
-    <li><%= violation.tweet.content %></li>
-  <% end %>
-</ul>
+<div class="wrapper row">
 
-<h2>Groups</h2>
-<h3>Admin</h3>
-<ul>
-  <% @user.admin_groups_active.each do |group| %>
-    <li><%= link_to "#{group.name}", group %> | <%= link_to "Close Group", close_group_path(group_id: group.id), method: "patch" %></li>
-  <% end %>  
-  <% @user.admin_groups_closed.each do |group| %>
-    <li><%= link_to "#{group.name}", group %> | <%= link_to "Delete Group", group_path(group_id: group.id), method: "delete" %></li>
-  <% end %>
-</ul>
-<h3>User</h3>
-<ul>
-  <% @user.user_groups.each do |group| %>
-    <li><%= link_to "#{group.name}", group %></li>
-  <% end %>
-</ul>
+  <!-- LEFT PANEL -->
+  <div class="col-sm-10">
+    <!-- Violations -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>Recent Violations</h2>
+        <ul>
+          <% @user.violations.each do |violation| %>
+            <li><%= violation.tweet.content %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-<% if @user == current_user %>
-<p>
-  <%= link_to "Join a group", groups_join_path %><br>
-  <%= link_to "Create a group", new_group_path %>
-</p>
-<% end %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>Groups</h2>
+
+        <div class="row">
+          <!-- ADMIN -->
+          <div class="col-sm-6">
+            <h3>Admin</h3>
+            <ul>
+              <% @user.admin_groups_active.each do |group| %>
+                <li><%= link_to "#{group.name}", group %> | <%= link_to "Close Group", close_group_path(group_id: group.id), method: "patch" %></li>
+              <% end %>  
+              <% @user.admin_groups_closed.each do |group| %>
+                <li><%= link_to "#{group.name}", group %> | <%= link_to "Delete Group", group_path(group_id: group.id), method: "delete" %></li>
+              <% end %>
+            </ul>
+          </div>
+          
+          <!-- Member -->
+          <div class="col-sm-6">
+            <h3>User</h3>
+            <ul>
+              <% @user.user_groups.each do |group| %>
+                <li><%= link_to "#{group.name}", group %></li>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="col-sm-2">
+    <!-- Create/Join Buttons -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @user == current_user %>
+        <p>
+          <%= link_to "Join a group", groups_join_path, class: "btn btn-primary" %>
+        </p>
+        <p>
+          <%= link_to "Create a group", new_group_path, class: "btn btn-primary" %>
+        </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
