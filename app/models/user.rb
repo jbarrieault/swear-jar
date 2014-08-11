@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
     unless self.groups.include?(group)
       self.groups << group 
-      Message.join_group(group, self) 
+      Message.user_event(group, self, "joined") 
     end
   end
 
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
     if self.groups.include?(group)
       membership = UserGroup.find_by(user_id: self.id, group_id: group.id)
-      # Message.leave_group(group, self)
+      Message.user_event(group, self, "left")
       membership.destroy
     end
   end
@@ -89,8 +89,6 @@ class User < ActiveRecord::Base
               v.amt_charged = group.amount
               v.save
               v.charge_the_user
-              # group.balance += group.amount
-              # group.save
             end
           end
         end
