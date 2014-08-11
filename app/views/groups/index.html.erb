@@ -1,6 +1,6 @@
 <h1>Group Index</h1>
 <ul class="groups-list">
 <% @groups.each do |group| %>
-  <li><%= link_to "#{group.name}", group %><button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %>">X</button></li>
+  <li><%= link_to "#{group.name}", group %><button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %>"><%= @user.member?(group) ? "leave" : "join" %></button></li>
 <% end %>
 </ul>

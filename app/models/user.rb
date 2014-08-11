@@ -185,6 +185,10 @@ class User < ActiveRecord::Base
     self.groups.include?(group) ? "member" : "nonmember"
   end
 
+  def member?(group)
+    self.groups.include?(group) ? true : false
+  end
+
 
 
 end
