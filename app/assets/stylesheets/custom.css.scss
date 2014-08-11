@@ -1,0 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+
+html, body {
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-weight: 900 !important;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:70px;
+}
+
+.footer {
+  background: rgb(229, 235, 239);
+  position: relative;
+  margin-top: -70px; 
+  height: 70px;
+  clear:both;
+} 
+
+.footer p {
+  padding: 27px 0 0 0;
+  color: rgb(127, 140, 141);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer a {
+  color: rgb(127, 140, 141);
+}
+
+.navbar {
+  padding: 10px;
+}
+
+.navbar-default {
+  background: rgb(255,255,255) !important;
+}
+
+nav a {
+  font-size: 18px !important;
+}
+
+nav a.btn {
+  font-size: 14px !important;
+  color: rgb(255,255,255) !important;
+  background: rgb(52, 73, 94);
+}
+
+nav a.btn:hover {
+  color: rgb(52, 73, 94) !important;
+}
+
+.home-grey-box {
+  width: 100%;
+  height: 430px;
+  background: rgb(229, 235, 239);
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  margin-top: -20px;
+}
+
+.tagline {
+  top: 20px;
+  position:relative;
+  z-index: 100;
+}
+
+.floating-box {
+  position: relative;
+  z-index: 100;
+  top: 75px;
+}
+
+.home-page-jumbotron {
+  color: white !important;
+  height: 500px;
+  background: rgb(52, 73, 94) !important;
+}
+
+.call-to-action {
+  height: 100px;
+  top: 50px;
+  margin: 75px 0 50px; 
+}
+
+.call-text p, .call-btn-box p  {
+  font-size: 18px;
+  padding: 25px 25px 0 0;
+}
+
+.small-nav {
+  font-size: 14px !important;
+}
+
+.buffer {
+  height: 50px;
+}
+
+

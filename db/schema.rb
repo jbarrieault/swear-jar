@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140810215954) do
   end
 
   create_table "messages", force: true do |t|
-    t.boolean  "viewed",     default: false
+    t.integer  "view_count", default: 0
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at"
