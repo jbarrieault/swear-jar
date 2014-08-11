@@ -25,9 +25,26 @@ hi - Jacob
     [x]someone joins a group you own
     [ ]someone leaves a group
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
-[ ]design shit - MITCH
 [ ]About page (maybe just index w/ app definition)
 [ ]Dashboard - Charts! Group show page
  -violations per user, total raised, most used trigger, violations per day, top violator
 
+[ ]design shit - MITCH
+  [x]pick fonts, colors, look book
+  [ ]navbar
+  [ ]footer
+  [/]login page
+  [ ]user
+    [ ]index - delete!!!
+    [ ]show
+    [ ]venmo authorization page
+  [ ]groups
+    [ ]index
+    [ ]new
+    [ ]show
+    [ ]closed
+    [ ]edit
+    [ ]join?
+  [ ]messages
+    [ ]index
 
