@@ -1,6 +1,6 @@
 <h1>Group Index</h1>
-<ul>
-<% @user.groups.each do |group| %>
-  <li><%= link_to "#{group.name}", group %> | <%= link_to "Edit", edit_group_path(group) %></li>
+<ul class="groups-list">
+<% @groups.each do |group| %>
+  <li><%= link_to "#{group.name}", group %><button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %>">X</button></li>
 <% end %>
 </ul>

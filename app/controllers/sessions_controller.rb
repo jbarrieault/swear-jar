@@ -3,14 +3,13 @@ class SessionsController < ApplicationController
   skip_before_filter :venmo?, only: [:create, :destroy]
 
   def new
-
   end
 
   def create
     if auth_hash[:provider] == "twitter"
       image_url   = auth_hash[:info][:image].gsub("_normal", "")
-      screen_name = auth_hash[:info][:nickname]
-      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url, screen_name: screen_name)
+      handle = auth_hash[:info][:nickname]
+      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], image_url: image_url, screen_name: handle)
       if @user
         unless @user.bookend
           @user.set_bookend

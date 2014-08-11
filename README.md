@@ -17,8 +17,9 @@ hi - Jacob
 [x]Set $ amount in create group - JACOB
 [x]Add group-trigger autofocus when pressing 'enter' key - JACOB
 [ ]AJAXy join groups page
-[ ]Send tweet from swear-jar account @mentioning person you just violated
-[ ]Sanitize tweet bodies
+  [ ]join group button on group show page
+[x]Send tweet from swear-jar account @mentioning person you just violated
+[ ]Sanitize tweet bodies for showing violation
 [ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH
     [x]join/leave group
     [x]someone joins a group you own
@@ -26,6 +27,7 @@ hi - Jacob
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
 [ ]design shit - MITCH
 [ ]About page (maybe just index w/ app definition)
-[ ]Dashboard
+[ ]Dashboard - Charts! Group show page
+ -violations per user, total raised, most used trigger, violations per day, top violator
 
 
