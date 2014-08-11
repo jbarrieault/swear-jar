@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'groups/join' => 'groups#join'
-  post 'groups/join' => 'groups#join_groups'
+  post '/groups/join'  => 'groups#join_group'
+  post '/groups/leave' => 'groups#leave_group'
 
   resources :users do 
     resources :messages, only: [:index, :destroy]

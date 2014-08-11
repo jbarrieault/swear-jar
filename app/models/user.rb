@@ -26,15 +26,22 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def join_groups(groups)
+  def join_group(group)
     scan_tweets
 
-    groups.each do |g|
-      group = Group.find(g)
-      unless self.groups.include?(group)
-        self.groups << group 
-        Message.join_group(group, self) 
-      end
+    unless self.groups.include?(group)
+      self.groups << group 
+      Message.join_group(group, self) 
+    end
+  end
+
+  def leave_group(group)
+    scan_tweets
+
+    if self.groups.include?(group)
+      membership = UserGroup.find_by(user_id: self.id, group_id: group.id)
+      # Message.leave_group(group, self)
+      membership.destroy
     end
   end
 
@@ -173,5 +180,11 @@ class User < ActiveRecord::Base
     count = nil if count == 0
     count
   end
+
+  def membership(group)
+    self.groups.include?(group) ? "member" : "nonmember"
+  end
+
+
 
 end

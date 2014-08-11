@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
 
   def index
-    @user = User.find(session[:user_id]) 
+    @groups = Group.where(active: true)
+    @user   = current_user
   end
 
   def show
@@ -41,17 +42,16 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
-  def join
-    # render list of all groups, 
-    # have check boxes already checked for groups currently in, 
-    # have greyed out check button for inactive groups
-    @groups = Group.all
+  def join_group
+    @user = current_user
+    @user.join_group(Group.find(params[:group][:id]))
+    render json: @user
   end
 
-  def join_groups
-    @user = User.find(current_user)
-    @user.join_groups(params[:groups])
-    redirect_to user_path(current_user)
+  def leave_group
+    @user = current_user
+    @user.leave_group(Group.find(params[:group][:id]))
+    render json: @user
   end
 
   def close
