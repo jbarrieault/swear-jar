@@ -46,7 +46,36 @@ $(function(){
       }
     });
 
-  })
+  });
+
+
+  $('.groups-list').on('click', '.admin', function(){
+    var group_id = $(this).attr('id');
+    var that = $(this);
+ 
+    $(this).attr('class', 'nonmember');
+    
+    if (confirm("Are you sure you want to close this group?")){
+      $(this).closest('li').hide();
+
+      $.ajax({
+        type: 'PATCH',
+        url: '/groups/'+group_id+'/close',
+        data: {group_id: group_id },
+        success: function(response){
+          console.log("closing worked");
+          that.closest('li').remove();
+
+        },
+        error: function(response){
+          console.log("closing failed");
+          that.closest('li').show();
+        }
+      });
+
+    } 
+
+  });
 
 
 

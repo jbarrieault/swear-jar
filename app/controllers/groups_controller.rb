@@ -1,13 +1,14 @@
 class GroupsController < ApplicationController
 
   def index
-    @groups = Group.where(active: true)
+    @groups = Group.where(active: true).includes(:triggers)
     @user   = current_user
   end
 
   def show
     @group = Group.find(params[:id])
     @triggers = @group.triggers
+    @membership = current_user.membership(@group)
   end
 
   def new
@@ -44,14 +45,24 @@ class GroupsController < ApplicationController
 
   def join_group
     @user = current_user
-    @user.join_group(Group.find(params[:group][:id]))
-    render json: @user
+    @group = Group.find(params[:group][:id])
+    @user.join_group(@group)
+
+    respond_to do |format|
+      format.json { render json: @user }
+      format.html { redirect_to group_path(@group)}
+    end
   end
 
   def leave_group
     @user = current_user
-    @user.leave_group(Group.find(params[:group][:id]))
-    render json: @user
+    @group = Group.find(params[:group][:id])
+    @user.leave_group(@group)
+    
+    respond_to do |format|
+      format.json { render json: @user }
+      format.html { redirect_to group_path(@group)}
+    end
   end
 
   def close
@@ -59,7 +70,11 @@ class GroupsController < ApplicationController
     @group.active = false if current_user.id == @group.admin_id 
     @group.save
     Message.closed_group(@group)
-    redirect_to closed_group_path(@group)
+
+    respond_to do |format|
+      format.json { render json: @group }
+      format.html { redirect_to closed_group_path(@group) }
+    end
   end
 
   def closed

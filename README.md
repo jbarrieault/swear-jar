@@ -16,8 +16,8 @@ hi - Jacob
   [x]jar name/reason
 [x]Set $ amount in create group - JACOB
 [x]Add group-trigger autofocus when pressing 'enter' key - JACOB
-[ ]AJAXy join groups page
-  [ ]join group button on group show page
+[x]AJAXy join groups page
+  [/]join group button on group show page
 [x]Send tweet from swear-jar account @mentioning person you just violated
 [ ]Sanitize tweet bodies for showing violation
 [ ]Notification when you close a group/a group you belong to closes - JACOB/MITCH

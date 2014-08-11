@@ -1,6 +1,13 @@
 This is the show page!
 
 <h1><%= @group.name %></h1>
+
+<% if @membership == "nonmember" %>
+  <%= link_to "Join", groups_join_path(group: {id: @group.id} ), method: "POST", class: "btn btn-primary" %>
+<% elsif @membership == "member" %>
+  <%= link_to "Leave", groups_leave_path(group: {id: @group.id}), method: "POST", class: "btn btn-primary" %>
+<% end %>
+
 <p><strong>Status:</strong> <%= @group.status %></p>
 <p><strong>Purpose:</strong> <%= @group.purpose %></p>
 <%= @triggers.pluck(:name) %>

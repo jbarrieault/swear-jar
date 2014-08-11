@@ -182,11 +182,23 @@ class User < ActiveRecord::Base
   end
 
   def membership(group)
-    self.groups.include?(group) ? "member" : "nonmember"
+    if member?(group) 
+      group.admin == self ? "admin" : "member"
+    else
+      "nonmember"
+    end
   end
 
   def member?(group)
     self.groups.include?(group) ? true : false
+  end
+
+  def action_for_group(group)
+    if member?(group) 
+      group.admin == self ? "Close" : "Leave"
+    else
+      "Join"
+    end
   end
 
 
