@@ -4,8 +4,6 @@ class Violation < ActiveRecord::Base
   has_many :trigger_violations
   has_many :triggers, through: :trigger_violations
 
-  AMOUNT = 0.01
-
   def charge_the_user
     user = self.tweet.user
     admin = User.find(self.group.admin_id)
@@ -14,7 +12,7 @@ class Violation < ActiveRecord::Base
     
     unless user.id == admin.id
       admin_venmo_id = admin.venmo_id
-      amount = AMOUNT
+      amount = self.group.amount
       time = self.tweet.created_at.strftime("%I:%M:%S %p")
       note = "I said #{words} on twitter around #{time}. auto-payment via swear-jar"
       access_token = user.token
