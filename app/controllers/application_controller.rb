@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   before_filter :require_login, :venmo?
   skip_before_filter :require_login, only: [:home]
   skip_before_filter :venmo?, only: [:home]
+  before_action :check_messages
 
   helper_method def logged_in?
-    !!current_user #double negation to convert to boolean
+    !!current_user 
   end
 
   helper_method def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id] #memoized
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def home
@@ -35,6 +36,12 @@ class ApplicationController < ActionController::Base
   def venmo?
     unless current_user.encrypted_token
       redirect_to venmo_path
+    end
+  end
+
+  def check_messages
+    if logged_in?
+      Message.increment_viewed_messages(current_user)
     end
   end
 

@@ -45,5 +45,12 @@ class Message < ActiveRecord::Base
     end
   end
 
+  def self.increment_viewed_messages(user)
+    user.messages.each do |message|
+      message.view_count += 1 if message.view_count == 1
+      message.save
+    end
+  end
+
 
 end

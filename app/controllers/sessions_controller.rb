@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   skip_before_filter :venmo?, only: [:create, :destroy]
 
   def new
-
   end
 
   def create
