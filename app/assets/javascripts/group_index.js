@@ -5,6 +5,7 @@ $(function(){
     var that = $(this);
     
     $(this).attr('class', 'member');
+    $(this).text('leave');
 
     $.ajax({
       type: 'POST',
@@ -16,8 +17,8 @@ $(function(){
       error: function(response){
         that.attr('class', 'nonmember');
         console.log("joining failed");
-
-      }
+        $(this).text('join');
+      } 
     });
 
   });
@@ -28,6 +29,7 @@ $(function(){
     var that = $(this);
  
     $(this).attr('class', 'nonmember');
+    $(this).text('join');
 
     $.ajax({
       type: 'POST',
@@ -40,6 +42,7 @@ $(function(){
       error: function(response){
         console.log("leaving failed");
         that.attr('class', 'member');
+        $(this).text('leave');
       }
     });
 
