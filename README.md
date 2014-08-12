@@ -11,3 +11,13 @@
 [ ]Admin scan tweets button
 [ ]Fix venmo note time
 [ ]clear messages button
+[ ]style flash messages on 
+
+
+Seed Data:
+
+- 3 Groups
+  - triggers
+  - us 3 as members (cannot have non-venmo authorized users).
+  - extra users with our same venmo credentials?
+  - tweets from users

@@ -5,12 +5,12 @@
 </p>
 
 <ul class="groups-list">
-<% @groups.each do |group| %>
+<% @groups.reverse.each do |group| %>
   <li><div class="group-div">
     <%= link_to "#{group.name}", group %> | <%= group.triggers.pluck(:name).join(', ') %> | Amount: $<%= group.dollar_amount %> | 
     Admin: <%= link_to "#{group.admin.name}", group.admin %> 
 
-    <button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %>"><%= @user.action_for_group(group) %></button>
+    <button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %> btn btn-default"><%= @user.action_for_group(group) %></button>
   </div></li>
 <% end %>
 </ul>
