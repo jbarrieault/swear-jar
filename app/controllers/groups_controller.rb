@@ -71,7 +71,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group.active = false if current_user.id == @group.admin_id 
     @group.save
-    Message.closed_group(@group)
+    Message.admin_event(@group, "closed")
 
     respond_to do |format|
       format.json { render json: @group }
@@ -98,7 +98,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:group_id])
-    Message.delete_group(@group)
+    Message.admin_event(@group, "deleted")
     @group.destroy if current_user.id == @group.admin_id 
     redirect_to user_path(current_user)
   end

@@ -5,19 +5,17 @@ class Message < ActiveRecord::Base
     self.view_count > 1 
   end
 
-  def self.join_group(group, user)
-    message = "#{user.name.capitalize} has joined #{group.name}"
+  # refactor of join_group & leave_group
+  def self.user_event(group, user, action)
+    message = "#{user.name.capitalize} has #{action} #{group.name}"
     group.users.each do |u|
       u.messages.build(content: message).save unless u == user
     end
   end
 
-  def self.user_leave
-    # build along with AJAX groups page
-  end
-
-  def self.closed_group(group)
-    message = "#{group.admin.name} has closed #{group.name}."
+  # refactor of delete_group & close_group
+  def self.admin_event(group, action)
+    message = "#{group.admin.name} has #{action} #{group.name}."
     group.users.each do |user|
       user.messages.build(content: message).save unless user == group.admin
     end
@@ -31,12 +29,6 @@ class Message < ActiveRecord::Base
     end
   end
 
-  def self.delete_group(group)
-    message = "#{group.admin.name} has deleted #{group.name}."
-    group.users.each do |user|
-      user.messages.build(content: message).save unless user == group.admin
-    end
-  end
 
   def self.increment_view_count(user) 
     user.messages.each do |message|

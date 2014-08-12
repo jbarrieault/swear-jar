@@ -39,7 +39,7 @@ class Group < ActiveRecord::Base
       payment_due = user.group_balance(self)
       refund_user(user, payment_due) unless user.id == self.admin_id
     end
-    Message.closed_group(self) unless self.active == false
+    Message.admin_event(self, "closed") unless self.active == false
     Message.refund(self)
     self.refunded = true
     self.active = false
