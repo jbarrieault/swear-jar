@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.grey-box {
+@import "custom"; // GRAB SASS VARS
+
+.blue-box {
   width: 100%;
   height: 120px;
-  background: rgb(229, 235, 239);
+  background: $blue;
   position: absolute;
   left: 0;
   z-index: 0;
@@ -15,20 +17,110 @@
 .header {
   position: relative;
   z-index: 100;
+  color: $grey;
+  padding-right: 10px;
+}
+
+.header h1 {
+  font-weight: 100 !important;
+  letter-spacing: 2px;
+}
+
+.user-top {
+  position: relative;
+  z-index: 200;
+  width: 100%;
+  margin-top: 50px;
 }
 
 .user-img {
-  position:relative;
-  z-index: 200;
-  margin-top: -35px;
-  width: 250px;
+  position: relative;
+  margin-top:-85px;
+  width: 100%;
   height: 250px;
+  margin-right: 50px;
   border-radius: 5px;
-  background: rgb(52, 73, 94);
 }
 
 img.profile_image {
-  width: 250px;
-  height: 250px;
+  display: block;
+  margin: auto;
+
+  height: auto;
+  max-height: 100%;
+
+  width: auto;
+  max-width: 100%;
   border-radius: 5px;
+}
+
+.venmo-panel {
+  margin:0 auto;
+  width: 80%;
+}
+
+.venmo-panel h2 {
+  color: $blue;
+  font-size: 48px;
+  margin: 25px auto 15px; 
+  font-weight: 900;
+}
+
+.panel-copy {
+  color: $midGrey;
+}
+
+.panel-copy h3 {
+  font-weight: 300 !important;
+  padding: 0 0 15px;
+  line-height: 32px;
+}
+
+.venmo-btn {
+  margin: 20px 0 25px;
+}
+
+.venmo-btn a {
+  width: 70%;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.row {
+  margin-top: 25px;
+}
+
+/* TABLET FIX */
+
+@media screen and (max-width:770px) {
+  .user-img {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .header h1 {
+    text-align: center !important;
+  }
+}
+
+
+/* PHONE */
+
+@media screen and (max-width:480px) {
+
+  .user-top {
+    position:static;
+    margin-top: 55px;
+  }
+
+  .user-img {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .header h1 {
+    text-align: center !important;
+    font-size: 28px;
+  }
+
 }
