@@ -13,8 +13,12 @@ This is the show page!
 
 
 <p><strong>Status:</strong> <%= @group.status %></p>
+<p><strong>Charge:</strong> $<%= @group.dollar_amount %></p>
+
 <p><strong>Purpose:</strong> <%= @group.purpose %></p>
 <p><strong>Triggers:</strong> <%= @triggers.pluck(:name).map(&:titleize).join(', ') %></p>
+
+<h4>Recent Violations:</h4>
 <ul>
   <% @group.tweets.each do |tweet| %>
     <li><%=h tweet.content %> | By: <%= tweet.user.name %> | Violation: <%= tweet.violations_in_group(@group).map(&:titleize).join(', ') %></li>
