@@ -33,12 +33,14 @@ This is the show page!
 
  <!-- this shouldn't be in the html file but idk where it goes -->
 <!-- <script src="Chart.min.js"></script> -->
-
-<canvas id="line-chart" width="600" height="400"></canvas>
-<canvas id="pie-chart" width="600" height="400"></canvas>
-<canvas id="bar-chart" width="600" height="400"></canvas>
+<div class="big-div">
+<div><canvas id="line-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Over Time</h4></div>
+<div><canvas id="pie-chart" width="600" height="400"></canvas><h4 class="text-center">Trigger Usage</h4></div>
+<div><canvas id="bar-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Per User</h4></div>
+</div>
 
 <script>
+Chart.defaults.global.responsive = true;
 // Chart.defaults.global.scaleIntegersOnly = true
 // Chart.defaults.global.scaleBeginAtZero = true
 
@@ -54,46 +56,49 @@ var violationLabels = gon.violation_labels;
 var violationData = gon.violation_data;
 var userLabels = gon.user_labels
 var userData = gon.user_data
+var colors = ["rgba(237, 238, 239, 1)", "rgba(127, 140, 141, 1)", "rgba(53, 57, 60, 1)", "rgba(52, 73, 94, 1)", "rgba(141, 170 198, 1)","rgba(59, 145, 47, 1)", "rgba(117, 190, 111, 1)"
+].reverse()
+var highlightColors = ["rgba(237, 238, 239, .6)", "rgba(127, 140, 141, .6)", "rgba(53, 57, 60, .6)", "rgba(52, 73, 94, .6)", "rgba(141, 170 198, .6)","rgba(59, 145, 47, .6)", "rgba(117, 190, 111, .6)"].reverse()
 
 var dailyViolationData = {
     labels: violationLabels,
     datasets: [
         {
             label: "Violations over time",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
+            fillColor: "rgba(141,170,198, .5)",
+            strokeColor: "rgba(52,73,94,.8)",
+            pointColor: "rgba(52,73,94,.8)",
+            pointStrokeColor: "rgba(52,73,94,.8)",
+            pointHighlightFill: "rgba(52,73,94,.1)",
+            pointHighlightStroke: "rgba(52,73,94,1)",
             data: violationData
-        }
+        } 
     ]
 };
 
 var triggerUsageData = []
-var colors = ["#edeeef", "#7f8c8d", "#35393c", "#34495e", "#8daac6", "#3b912f", "#75be6f"
-].reverse()
+
 
 for(var i = 0; i< triggerData.length; i++){
   triggerUsageData.push(
       {
         value: triggerData[i],
         color: colors[i],
-        highlight: "#FFC870",
+        highlight: highlightColors[i],
         label: triggerLabels[i]
     });
 }
-
+console.log(userData);
+console.log(userLabels);
 var userViolationData = {
     labels: userLabels,
     datasets: [
         {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
+            label: "Violations per User",
+            fillColor: "rgba(138,51,36,1)",
+            strokeColor: "rgba(138,51,36,1)",
+            highlightFill: "rgba(138,51,36,.6)",
+            highlightStroke: "rgba(138,51,36,1)",
             data: userData
         }
     ]
@@ -102,19 +107,10 @@ var userViolationData = {
 var userViolationOptions = {scaleBeginAtZero : true}
 
 
-var dailyViolations = new Chart(ctx[0]).Line(dailyViolationData);
+var dailyViolations = new Chart(ctx[0]).Line(dailyViolationData, {bezierCurve : false,pointDotRadius : 2});
 
-var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData, {percentageInnerCutout : 50});
-var userViolations = new Chart(ctx[2]).Bar(userViolationData, {scaleOverride: true, 
-    // Number - The number of steps in a hard coded scale
-    scaleSteps: (Math.max.apply(Math, userData) + 1),
-    // Number - The value jump in the hard coded scale
-    scaleStepWidth: 1,
-    // Number - The scale starting value
-    scaleStartValue: 0,
-    barStrokeWidth : .2,
-    barValueSpacing : 10
-  });
+var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData);
+var userViolations = new Chart(ctx[2]).Bar(userViolationData);
 
 
 </script>

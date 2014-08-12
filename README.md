@@ -29,6 +29,8 @@ hi - Jacob
 [ ]About page (maybe just index w/ app definition)
 [ ]Dashboard - Charts! Group show page
  -violations per user, total raised, most used trigger, violations per day, top violator
-  [ ]add labels and highlighting to charts
+  [x]change highlight color
+  [x]make dates look prettier
+  [ ]move javascript out of view
 
 

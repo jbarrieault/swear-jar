@@ -77,7 +77,7 @@ class Group < ActiveRecord::Base
     violations = self.violations
     days.each do |day|
         violation_count = violations.select {|v| v.created_at.to_date == day}.count
-        data[day] = violation_count
+        data[day.strftime('%A')] = violation_count
     end
 
     return [data.values, data.keys]
