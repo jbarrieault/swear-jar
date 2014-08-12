@@ -16,10 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def scan
-    binding.pry
     Group.admin_scan
-    @response = ""
-    render json: @response
+    render json: current_user
   end
 
   def home
