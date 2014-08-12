@@ -25,7 +25,7 @@ class Violation < ActiveRecord::Base
 
       response = conn.post '/v1/payments', { user_id: admin_venmo_id, amount: amount, note: note, access_token: access_token}
     end
-    self.group.balance += (AMOUNT*100).to_i
+    self.group.balance += (self.group.amount*100).to_i
     self.group.save
   end
 

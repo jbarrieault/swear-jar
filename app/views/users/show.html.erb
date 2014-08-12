@@ -20,7 +20,7 @@
         <h2>Recent Violations</h2>
         <ul>
           <% @user.violations.each do |violation| %>
-            <li><%= violation.tweet.content %></li>
+            <li><%=h violation.tweet.content %></li>
           <% end %>
         </ul>
       </div>

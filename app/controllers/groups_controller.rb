@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @users = User.all
-    @amounts = [["$0.01", 1], ["$0.10", 10], ["$0.25", 25], ["$0.50", 50], ["$1.00", 100]]
+    @amounts = Group.amounts
   end
 
   def create

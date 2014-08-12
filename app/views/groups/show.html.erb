@@ -21,24 +21,50 @@ This is the show page!
 
 <p><strong>Status:</strong> <%= @group.status %></p>
 <p><strong>Purpose:</strong> <%= @group.purpose %></p>
-<%= @triggers.pluck(:name) %>
+<p><strong>Triggers:</strong> <%= @triggers.pluck(:name).map(&:titleize).join(', ') %></p>
 <ul>
   <% @group.tweets.each do |tweet| %>
-    <li><%= tweet.content %> | By: <%= tweet.user.name %> | Violation: XXX</li>
+    <li><%=h tweet.content %> | By: <%= tweet.user.name %> | Violation: <%= tweet.violations_in_group(@group).map(&:titleize).join(', ') %></li>
   <% end %>
 </ul>
 
-<h2>Put some graphs and shit here</h2>
- <!-- violations per user, total raised, most used trigger, violations per day, top violator -->
+<h3>Jarfund: 
+  <% if @group.refunded == false %>
+    <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)
+  <% else %>
+    <s><%= number_to_currency(@group.dollar_balance) %></s> REFUNDED (<%= User.find(@group.admin_id).name %>)
+  <% end %>
+</h3>
+<ul>
+<% @group.users.each do |user| %>
+  <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>
+<% end %>
+</ul>
+<% if current_user.admin?(@group)%>
+  <% if @group.active  %>
+    <%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch"%> 
+  <% else %>
+    Close Group
+  <% end %>|
+  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %><br>
+  <% if @group.refunded == false %>
+    <em>Didn't raise enough?</em><br>
+    <%= link_to "Click here to refund all group members", refund_group_path(group_id: @group.id) %>
+  <% else %>
+    You have already issued a refund for this group
+  <% end %>
+<% end %>
 
- <!-- this shouldn't be in the html file but idk where it goes -->
-<!-- <script src="Chart.min.js"></script> -->
-<div class="big-div">
-<div><canvas id="line-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Over Time</h4></div>
-<div><canvas id="pie-chart" width="600" height="400"></canvas><h4 class="text-center">Trigger Usage</h4></div>
-<div><canvas id="bar-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Per User</h4></div>
-</div>
+<% unless @group.violations.size == 0 %>
+  <h2>Data!</h2>
+  <div class="big-div">
+  <div><canvas id="line-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Over Time</h4></div>
+  <div><canvas id="pie-chart" width="600" height="400"></canvas><h4 class="text-center">Trigger Usage</h4></div>
+  <div><canvas id="bar-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Per User</h4></div>
+  </div>
+<% end %>
 
+<!-- this shouldn't be in the html file -->
 <script>
 Chart.defaults.global.responsive = true;
 // Chart.defaults.global.scaleIntegersOnly = true
@@ -116,29 +142,3 @@ var userViolations = new Chart(ctx[2]).Bar(userViolationData);
 </script>
 
 
-<h3>Jarfund: 
-  <% if @group.refunded == false %>
-    <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)
-  <% else %>
-    <s><%= number_to_currency(@group.dollar_balance) %></s> REFUNDED (<%= User.find(@group.admin_id).name %>)
-  <% end %>
-</h3>
-<ul>
-<% @group.users.each do |user| %>
-  <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>
-<% end %>
-</ul>
-<% if current_user.admin?(@group)%>
-  <% if @group.active  %>
-    <%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch"%> 
-  <% else %>
-    Close Group
-  <% end %>|
-  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %><br>
-  <% if @group.refunded == false %>
-    <em>Didn't raise enough?</em><br>
-    <%= link_to "Click here to refund all group members", refund_group_path(group_id: @group.id) %>
-  <% else %>
-    You have already issued a refund for this group
-  <% end %>
-<% end %>

@@ -5,6 +5,10 @@ class Group < ActiveRecord::Base
   has_many :violations
   has_many :tweets, through: :violations
 
+  def self.amounts
+    [["$0.01", 1], ["$0.10", 10], ["$0.25", 25], ["$0.50", 50], ["$1.00", 100]]
+  end
+
   def admin
     User.find(self.admin_id)
   end
