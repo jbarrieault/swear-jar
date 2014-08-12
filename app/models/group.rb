@@ -60,4 +60,14 @@ class Group < ActiveRecord::Base
     response = conn.post '/v1/payments', { user_id: user.venmo_id, amount: amount, note: note, access_token: admin_token}
   end
 
+  def most_used_triggers
+    data = []
+    labels = []
+    self.triggers.each do |trigger|
+      labels << trigger.name
+      data << trigger.violations.count
+    end
+    return [labels, data]
+  end
+
 end

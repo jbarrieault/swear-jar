@@ -18,6 +18,91 @@ This is the show page!
 </ul>
 
 <h2>Put some graphs and shit here</h2>
+ <!-- violations per user, total raised, most used trigger, violations per day, top violator -->
+
+ <!-- this shouldn't be in the html file but idk where it goes -->
+
+<!--  bar chart - volations per person
+ line chart - total raised
+ pie chart - most used trigger -->
+
+<!-- <script src="Chart.min.js"></script> -->
+
+<canvas id="line-chart" width="600" height="400"></canvas>
+<canvas id="pie-chart" width="600" height="400"></canvas>
+
+<script>
+var ctx = []
+ ctx.push(document.getElementById("line-chart").getContext("2d"));
+ ctx.push(document.getElementById("pie-chart").getContext("2d"));
+
+
+var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "Amount Raised",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [65, 59, 80, 81, 56, 55, 40]
+        }
+    ]
+};
+
+
+
+var triggerUsageData = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }
+]
+
+var totalRaised = new Chart(ctx[0]).Line(data);
+
+
+var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3>Jarfund: 
   <% if @group.refunded == false %>
     <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)

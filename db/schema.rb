@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140810215954) do
     t.integer  "admin_id"
     t.boolean  "active",     default: true
     t.integer  "balance",    default: 0
-    t.integer  "amount",     default: 0
+    t.integer  "amount"
     t.boolean  "refunded",   default: false
     t.string   "purpose"
   end

@@ -9,6 +9,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @triggers = @group.triggers
     @membership = current_user.membership(@group)
+    @labels = @group.most_used_triggers[0]
+    @data = @group.most_used_triggers[1]
   end
 
   def new
