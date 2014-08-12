@@ -5,6 +5,12 @@ class Group < ActiveRecord::Base
   has_many :violations
   has_many :tweets, through: :violations
 
+  def self.admin_scan
+    User.all.each do |user|
+      user.scan_tweets
+    end
+  end
+
   def self.amounts
     [["$0.01", 1], ["$0.10", 10], ["$0.25", 25], ["$0.50", 50], ["$1.00", 100]]
   end

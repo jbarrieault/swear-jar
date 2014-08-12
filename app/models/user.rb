@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
     return raw_tweets
   end
 
+
   def scan_tweets
     valid = self.venmo_token_valid?
     groups = self.active_groups.includes(:triggers)

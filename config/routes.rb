@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/scan' => 'application#scan'
   post '/groups/join'  => 'groups#join_group'
   post '/groups/leave' => 'groups#leave_group'
 

@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def scan
+    binding.pry
+    Group.admin_scan
+    @response = ""
+    render json: @response
+  end
+
   def home
 
   end
