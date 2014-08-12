@@ -1,4 +1,4 @@
-<div class="grey-box"></div>
+<div class="blue-box"></div>
 
 <div class="header text-right">
   <h1>Welcome, <%= @user.name %>!</h1>
@@ -6,75 +6,64 @@
 
 <div class="clearfix"></div>
 
-<div class="user-img">
-  <%= image_tag @user.image_url, class: "profile_image" %>
-</div>
-
-<div class="wrapper row">
-
-  <!-- LEFT PANEL -->
-  <div class="col-sm-10">
-    <!-- Violations -->
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h2>Recent Violations</h2>
-        <ul>
-          <% @user.violations.each do |violation| %>
-            <li><%= violation.tweet.content %></li>
-          <% end %>
-        </ul>
-      </div>
+<div class="user-top">
+  
+  <div class="col-md-3">
+    <div class="user-img">
+      <%= image_tag @user.image_url, class: "profile_image" %>
     </div>
 
+    <!-- VIOLATIONS -->
+  <div class="recent-violations">
+    
+    <div class="box-title">
+      <h3>Latest Violation:</h3>
+    </div>
+    <div class="latest-violation">
+      <% if @latest_violation %>
+        <p>"<%= @latest_violation_content %>"</p>
+        <p class="text-muted text-right"><em><%= @latest_violation.minutes_ago %> minutes ago</em></p>
+      <% else %>
+        <p>"<%= @latest_violation_content %>"</p>
+      <% end %>
+    </div>
+  </div>
+  </div>
 
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h2>Groups</h2>
+    <!-- GROUPS -->
 
-        <div class="row">
-          <!-- ADMIN -->
-          <div class="col-sm-6">
-            <h3>Admin</h3>
-            <ul>
-              <% @user.admin_groups_active.each do |group| %>
-                <li><%= link_to "#{group.name}", group %> | <%= link_to "Close Group", close_group_path(group_id: group.id), method: "patch" %></li>
-              <% end %>  
-              <% @user.admin_groups_closed.each do |group| %>
-                <li><%= link_to "#{group.name}", group %> | <%= link_to "Delete Group", group_path(group_id: group.id), method: "delete" %></li>
-              <% end %>
-            </ul>
-          </div>
-          
-          <!-- Member -->
-          <div class="col-sm-6">
-            <h3>User</h3>
-            <ul>
-              <% @user.user_groups.each do |group| %>
-                <li><%= link_to "#{group.name}", group %></li>
-              <% end %>
-            </ul>
-          </div>
-
+  <div class="recent-violations col-sm-9">
+    <!-- Violations -->
+    <div class="box-title">
+      <h3>Your Groups:</h3>
+    </div>
+    <div class="latest-violation">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Admin</h2>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="col-sm-2">
-    <!-- Create/Join Buttons -->
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <% if @user == current_user %>
-        <p>
-          <%= link_to "Join a group", groups_path, class: "btn btn-primary" %>
-        </p>
-        <p>
-          <%= link_to "Create a group", new_group_path, class: "btn btn-primary" %>
-        </p>
-        <% end %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>User</h2>
+        </div>
       </div>
+      <div class="clearfix"></div>
+
     </div>
   </div>
 
 </div>
+
+<div class="clearfix"></div>
+
+<div class="wrapper row">
+  
+
+
+
+
+  
+
+</div>
+

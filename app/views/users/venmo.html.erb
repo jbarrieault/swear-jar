@@ -1,6 +1,23 @@
-
 <% if current_user.encrypted_token %>
   You have authorized Venmo 
 <% else %>
-  <%= link_to 'Authorize Venmo', venmo_login_path %>
+  
+  <div class="panel panel-default col-sm-6 col-sm-offset-3">
+    <div class="panel-body">
+      <%= render 'application/logo' %>
+      <div class="venmo-panel">
+
+        <h2 class="text-center">Hi <%= current_user.first_name %>!</h2>
+        
+        <div class="panel-copy">
+          <h3>You're almost ready to go. Just connect your Venmo account, and you can start using Swear Jar!</h3>
+        </div>
+
+        <div class="text-center venmo-btn">
+        <%= link_to 'Authorize Venmo', venmo_login_path, class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% end %>

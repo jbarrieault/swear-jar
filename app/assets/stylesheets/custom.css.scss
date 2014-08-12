@@ -1,3 +1,19 @@
+$grey: #edeeef !default;
+$midGrey: #7f8c8d !default;
+$darkGrey: #35393c !default;
+$blue: #34495e !default;
+$lightBlue: #8daac6 !default;
+$green: #3b912f !default;
+$lightGreen: #75be6f !default;
+
+// rgba(237, 238, 239, 1),  
+// rgba(127, 140, 141, 1), 
+// rgba(53, 57, 60, 1), 
+// rgba(52, 73, 94, 1), 
+// rgba(141, 170 198, 1), 
+// rgba(59, 145, 47, 1), 
+// rgba(117, 190, 111, 1)
+
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700,900);
 
 html, body {
@@ -6,11 +22,29 @@ html, body {
 }
 
 body {
-  background: rgb(237, 238, 239) !important;
+  background: $grey !important;
 }
 
 h1 {
   font-weight: 900 !important;
+}
+
+.header-logo {
+  top: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.header-logo a {
+  color: $darkGrey;
+  font-weight: 100;
+  font-size: 24px;
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+.header-logo a:hover {
+  text-decoration: none;
 }
 
 #wrap {
@@ -31,12 +65,12 @@ h1 {
 
 .footer p {
   padding: 27px 0 0 0;
-  color: rgb(127, 140, 141);
+  color: $midGrey;
   font-size: 14px;
 }
 
 .footer a {
-  color: rgb(127, 140, 141);
+  color: $midGrey;
 }
 
 .navbar {
@@ -44,7 +78,7 @@ h1 {
 }
 
 .navbar-default {
-  background: rgb(255,255,255) !important;
+  background: white !important;
 }
 
 nav a {
@@ -52,18 +86,18 @@ nav a {
 
 nav a.btn {
   font-size: 14px !important;
-  color: rgb(255,255,255) !important;
-  background: rgb(52, 73, 94);
+  color: white !important;
+  background: $blue;
 }
 
 nav a.btn:hover {
-  color: rgb(52, 73, 94) !important;
+  color: $blue !important;
 }
 
 .home-grey-box {
   width: 100%;
   height: 430px;
-  background: rgb(52, 73, 94);
+  background: $blue;
   position: absolute;
   left: 0;
   z-index: 0;
@@ -111,15 +145,40 @@ nav a.btn:hover {
 
 .bottom-logo {
   position: relative;
-  left:-25px;
 }
 
 .bottom-logo h1 {
   font-size: 58px;
+  margin-top:25px;
+  float: left;
+}
+
+.bottom-logo img {
+  float: left;
+}
+
+.logo-wrapper {
+  width: 365px;
+  height:100px;
+  margin: 0 auto;
 }
 
 .logo-font {
   font-weight: 100 !important;
+}
+
+/* PHONE */
+
+@media screen and (max-width:480px) {
+
+  .call-btn-box {
+    text-align: center;
+  }
+
+  .mobile-logo-fix {
+    padding-top: 75px;
+  }
+
 }
 
 

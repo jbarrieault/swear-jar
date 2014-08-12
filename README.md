@@ -31,13 +31,13 @@ hi - Jacob
 
 [ ]design shit - MITCH
   [x]pick fonts, colors, look book
-  [ ]navbar
-  [ ]footer
+  [/]navbar
+  [x]footer
   [/]login page
   [ ]user
-    [ ]index - delete!!!
+    [x]index - delete!!!
     [ ]show
-    [ ]venmo authorization page
+    [x]venmo authorization page
   [ ]groups
     [ ]index
     [ ]new
