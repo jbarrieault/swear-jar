@@ -4,66 +4,68 @@
   <h1>Welcome, <%= @user.name %>!</h1>
 </div>
 
-<div class="clearfix"></div>
-
 <div class="user-top">
   
+   <!-- LEFT SIDE -->
   <div class="col-sm-3">
     <div class="user-img">
       <%= image_tag @user.image_url, class: "profile_image" %>
     </div>
 
-    <!-- VIOLATIONS -->
-  <div class="recent-violations">
-    
-    <div class="box-title">
+  <!-- VIOLATIONS -->
+  <div class="custom-panel">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
       <h3>Latest Violation:</h3>
-    </div>
-    <div class="latest-violation">
       <% if @latest_violation %>
-        <p>"<%= @latest_violation_content %>"</p>
+        <p>"<%=h @latest_violation_content %>"</p>
         <p class="text-muted text-right"><em><%= @latest_violation.minutes_ago %> minutes ago</em></p>
       <% else %>
         <p>"<%= @latest_violation_content %>"</p>
       <% end %>
     </div>
   </div>
+
+  <!-- JOIN GROUP -->
+  <div class="custom-panel">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
+      <h3>Toolbar</h3>
+      <p><%= link_to 'Join a Group', groups_path, class: "btn btn-default btn-lg" %></p>
+      <p><%= link_to 'Create a Group', new_group_path, class: "btn btn-default btn-lg" %></p>
+    </div>
   </div>
 
-    <!-- GROUPS -->
+  </div><!-- end LEFT SIDE -->
 
-  <div class="recent-violations col-xs-9">
+  <!-- RIGHT SIDE -->
+  <div class="col-sm-9">
+
+  <!-- GROUPS -->
+  <div class="custom-panel ">
     <!-- Violations -->
-    <div class="box-title">
-      <h3>Your Groups:</h3>
-    </div>
-    <div class="latest-violation">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
+    <h3>Your Groups:</h3>
+
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>Admin</h2>
+          <%= render "admin_group_module" %>
         </div>
       </div>
+
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>User</h2>
+          <%= render "user_group_module" %>
         </div>
       </div>
-      <div class="clearfix"></div>
-
     </div>
   </div>
 
-</div>
+  </div><!-- end RIGHT SIDE -->
 
-<div class="clearfix"></div>
+</div><!-- end USER TOP -->
 
-<div class="wrapper row">
-  
-
-
-
-
-  
-
-</div>
 

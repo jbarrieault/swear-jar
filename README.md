@@ -31,12 +31,12 @@ hi - Jacob
 
 [ ]design shit - MITCH
   [x]pick fonts, colors, look book
-  [/]navbar
+  [x]navbar
   [x]footer
-  [/]login page
-  [ ]user
+  [/]login/landing page
+  [x]user
     [x]index - delete!!!
-    [ ]show
+    [x]show
     [x]venmo authorization page
   [ ]groups
     [ ]index

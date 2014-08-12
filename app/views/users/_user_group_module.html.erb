@@ -1,0 +1,33 @@
+<!-- GROUP MODULE -->
+<% @user.user_groups.each do |group| %>
+  <%= link_to(group) do %>
+      <div class="group-box col-sm-10">
+        <div class="top-box">
+          <div class="group-img-box">
+            <%= image_tag group.admin.image_url, class: "group-img" %>
+          </div>
+          <div class="right-text">
+            <h3><%= group.name %> <span>| <%= group.purpose %></span></h3>
+            <ul>
+              <li><strong>Created by:</strong> <%= group.admin.name %></li>
+              <div style="height:10px;"></div>
+              <li><strong>Money raised to date: </strong><%= number_to_currency(group.dollar_balance) %></li>
+              <li><strong>Triggers: </strong><%= group.triggers.pluck(:name)[0..4].join(", ") %></li>
+              <li><strong>Members: </strong><%= group.users.pluck(:name)[0..4].join(", ") %></li>
+            </ul>
+          </div>
+        </div>
+        <% if group.status == "closed" %>
+          <div class="status closed"><%= group.status.upcase %></div>
+        <% else %>
+          <div class="status open"><%= group.status.upcase %></div>
+        <% end %>
+        <div class="cost-per-tweet text-center">
+          <h4>
+            <%= number_to_currency(group.dollar_amount) %>
+          </h4>
+          <p><em>per tweet</em></p>
+        </div>
+      </div>
+  <% end %>
+<% end %><!-- end GROUP MODULE -->

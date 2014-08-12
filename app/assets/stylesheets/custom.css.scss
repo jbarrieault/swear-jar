@@ -5,6 +5,7 @@ $blue: #34495e !default;
 $lightBlue: #8daac6 !default;
 $green: #3b912f !default;
 $lightGreen: #75be6f !default;
+$red: #8A3324 !default;
 
 // rgba(237, 238, 239, 1),  
 // rgba(127, 140, 141, 1), 
@@ -167,6 +168,184 @@ nav a.btn:hover {
   font-weight: 100 !important;
 }
 
+/* CUSTOM PANELS */
+
+.custom-panel {
+  margin: 15px 0 0;
+  float: left;
+  width: 100%
+}
+
+.custom-panel h3 {
+  margin: 5px 0 10px 0;
+  color: rgba($darkGrey, .95);
+  font-weight: 900;
+}
+
+.custom-panel .btn-default {
+  width: 100%;
+}
+
+.custom-panel-border {
+  background: rgba($darkGrey, .8);
+  width: inherit;
+  margin:0;
+  padding: 3px 10px;
+  margin: 15px 0 0 0;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.custom-panel-content {
+  margin:0;
+  padding: 10px 20px;
+  background: white;
+  overflow: scroll;
+  color: $midGrey;
+}
+
+.custom-panel .panel, 
+.custom-panel .panel-default,
+.custom-panel .panel-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
+  box-shadow: none;
+}
+
+/* GROUP BOX */
+
+.group-box {
+  border: 2px $grey solid;
+  border-radius: 3px;
+  height: 150px;
+  padding: 13px !important;
+  color: $midGrey !important;
+  overflow: hidden;
+  margin: 0 0 10px 0;
+  -webkit-transition: all ease 0.25s;
+  -moz-transition: all ease 0.25s;
+  -o-transition: all ease 0.25s;
+  transition: all ease 0.25s;
+}
+
+.group-box:hover {
+  background: rgba($grey, .2);
+}
+
+.group-box .top-box {
+
+}
+
+.group-box .right-text {
+  float: left;
+  padding-left: 10px;
+}
+
+.group-box ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+.group-box li {
+  margin: 0;
+}
+
+.group-box .right-text h3 {
+  color: $blue;
+  margin: 5px 0 1px 0;
+  padding: 0;
+}
+
+.group-box .right-text h3 span {
+  font-weight: 300;
+  font-size: 80%;
+  color: $midGrey;
+}
+
+.group-img-box {
+  float: left;
+  padding: 2px;
+}
+
+img.group-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  opacity: 0.8;
+}
+
+.status {
+  color: white !important;
+  width: 75px;
+  height: 30px; 
+  border-radius: 3px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  text-align: center;
+  padding: 5px;
+}
+
+.closed {
+  background: $red;
+}
+
+.open {
+  background: $green;
+}
+
+.cost-per-tweet {
+  position: absolute;
+  color: white !important;
+  border-radius: 3px;
+  background: $blue;
+  width: 75px;
+  height: 75px;
+  right: 15px;
+  bottom: 15px;
+  padding: 17px 0;
+}
+
+.cost-per-tweet h4 {
+  margin:0;
+  padding:0;
+}
+
+.cost-per-tweet p {
+  font-weight: 100;
+}
+
+/* TABLET */
+
+@media screen and (max-width:770px) {
+
+  .status {
+    width: 50px;
+    height: 19px;
+    left: 15px;
+    top: 75px;
+    font-size: 10px;
+    padding: 2px;
+  }
+
+  .cost-per-tweet {
+    width: 50px;
+    height: 30px;
+    left: 15px;
+    bottom: 15px;
+    padding: 3px 0;
+    font-size: 10px;
+  }
+
+  .cost-per-tweet h4 {
+    font-size: 12px;
+  }
+
+}
+
 /* PHONE */
 
 @media screen and (max-width:480px) {
@@ -178,6 +357,13 @@ nav a.btn:hover {
   .mobile-logo-fix {
     padding-top: 75px;
   }
+
+  .group-box .right-text {
+    width: 200px;
+    font-size: 12px;
+  }
+
+
 
 }
 
