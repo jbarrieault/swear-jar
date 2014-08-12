@@ -32,86 +32,92 @@ This is the show page!
  <!-- violations per user, total raised, most used trigger, violations per day, top violator -->
 
  <!-- this shouldn't be in the html file but idk where it goes -->
-
-<!--  bar chart - volations per person
- line chart - total raised
- pie chart - most used trigger -->
-
 <!-- <script src="Chart.min.js"></script> -->
 
 <canvas id="line-chart" width="600" height="400"></canvas>
 <canvas id="pie-chart" width="600" height="400"></canvas>
+<canvas id="bar-chart" width="600" height="400"></canvas>
 
 <script>
+// Chart.defaults.global.scaleIntegersOnly = true
+// Chart.defaults.global.scaleBeginAtZero = true
+
 var ctx = []
  ctx.push(document.getElementById("line-chart").getContext("2d"));
  ctx.push(document.getElementById("pie-chart").getContext("2d"));
+ ctx.push(document.getElementById("bar-chart").getContext("2d"));
 
 
-var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+var triggerLabels  = gon.trigger_labels;
+var triggerData = gon.trigger_data;
+var violationLabels = gon.violation_labels;
+var violationData = gon.violation_data;
+var userLabels = gon.user_labels
+var userData = gon.user_data
+
+var dailyViolationData = {
+    labels: violationLabels,
     datasets: [
         {
-            label: "Amount Raised",
+            label: "Violations over time",
             fillColor: "rgba(220,220,220,0.2)",
             strokeColor: "rgba(220,220,220,1)",
             pointColor: "rgba(220,220,220,1)",
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: violationData
         }
     ]
 };
 
+var triggerUsageData = []
+var colors = ["#edeeef", "#7f8c8d", "#35393c", "#34495e", "#8daac6", "#3b912f", "#75be6f"
+].reverse()
 
-
-var triggerUsageData = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
+for(var i = 0; i< triggerData.length; i++){
+  triggerUsageData.push(
+      {
+        value: triggerData[i],
+        color: colors[i],
         highlight: "#FFC870",
-        label: "Yellow"
-    }
-]
+        label: triggerLabels[i]
+    });
+}
 
-var totalRaised = new Chart(ctx[0]).Line(data);
+var userViolationData = {
+    labels: userLabels,
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: userData
+        }
+    ]
+};
+
+var userViolationOptions = {scaleBeginAtZero : true}
 
 
-var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData);
+var dailyViolations = new Chart(ctx[0]).Line(dailyViolationData);
+
+var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData, {percentageInnerCutout : 50});
+var userViolations = new Chart(ctx[2]).Bar(userViolationData, {scaleOverride: true, 
+    // Number - The number of steps in a hard coded scale
+    scaleSteps: (Math.max.apply(Math, userData) + 1),
+    // Number - The value jump in the hard coded scale
+    scaleStepWidth: 1,
+    // Number - The scale starting value
+    scaleStartValue: 0,
+    barStrokeWidth : .2,
+    barValueSpacing : 10
+  });
+
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <h3>Jarfund: 

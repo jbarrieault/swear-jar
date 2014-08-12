@@ -9,8 +9,20 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @triggers = @group.triggers
     @membership = current_user.membership(@group)
-    @labels = @group.most_used_triggers[0]
-    @data = @group.most_used_triggers[1]
+
+    @trigger_data, @trigger_labels = @group.most_used_triggers[0], @group.most_used_triggers[1]
+    @violation_data, @violation_labels = @group.violations_over_time[0], @group.violations_over_time[1]
+    @user_data, @user_labels  = @group.violations_per_user[0], @group.violations_per_user[1]
+
+    gon.trigger_labels = @trigger_labels
+    gon.trigger_data   = @trigger_data
+
+    gon.violation_labels = @violation_labels
+    gon.violation_data   = @violation_data 
+
+    gon.user_labels = @user_labels
+    gon.user_data   = @user_data
+
   end
 
   def new

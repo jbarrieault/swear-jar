@@ -82,6 +82,11 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.5)
+    gon (5.1.2)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     google-analytics-rails (0.0.6)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -186,6 +191,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    request_store (1.0.8)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -288,6 +294,7 @@ DEPENDENCIES
   factory_girl_rails
   faraday
   figaro
+  gon
   google-analytics-rails
   guard-rspec
   jbuilder (~> 2.0)

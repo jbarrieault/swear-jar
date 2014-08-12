@@ -67,7 +67,32 @@ class Group < ActiveRecord::Base
       labels << trigger.name
       data << trigger.violations.count
     end
-    return [labels, data]
+    return [data, labels]
+  end
+
+  def violations_over_time
+    data = Hash.new(0)
+    days = [Date.today - 6, Date.today - 5, Date.today - 4, Date.today - 3, Date.today - 2, Date.today - 1, Date.today ]
+
+    violations = self.violations
+    days.each do |day|
+        violation_count = violations.select {|v| v.created_at.to_date == day}.count
+        data[day] = violation_count
+    end
+
+    return [data.values, data.keys]
+  end
+
+  def violations_per_user
+    data = []
+    labels = []
+
+    self.users.each do |user|
+      labels << user.name
+      data << user.violations.where(:group_id => self.id).count
+    end
+
+    return [data, labels]
   end
 
 end
