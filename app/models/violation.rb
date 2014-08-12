@@ -12,9 +12,9 @@ class Violation < ActiveRecord::Base
     
     unless user.id == admin.id
       admin_venmo_id = admin.venmo_id
-      amount = self.group.amount
+      amount = self.group.dollar_amount
       time = self.tweet.created_at.strftime("%I:%M:%S %p")
-      note = "I said #{words} on twitter around #{time}. auto-payment via swear-jar"
+      note = "I said #{words} on twitter around #{time} UTC. auto-payment via swear-jar"
       access_token = user.token
 
       conn = Faraday.new(:url => 'https://api.venmo.com') do |faraday|
@@ -25,7 +25,7 @@ class Violation < ActiveRecord::Base
 
       response = conn.post '/v1/payments', { user_id: admin_venmo_id, amount: amount, note: note, access_token: access_token}
     end
-    self.group.balance += (self.group.amount*100).to_i
+    self.group.balance += (self.group.amount).to_i
     self.group.save
   end
 

@@ -82,7 +82,6 @@ class User < ActiveRecord::Base
               v.amt_charged = 0
               v.save
             elsif self.over_limit?
-              binding.pry
               v.amt_charged = 0
               v.save
             else
@@ -99,7 +98,7 @@ class User < ActiveRecord::Base
   def group_balance(group)
     balance = 0
     self.violations.where(group_id: group.id).each do |v| 
-      balance += v.amt_charged 
+      balance += v.amt_charged
     end
     return balance
   end

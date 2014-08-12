@@ -40,7 +40,7 @@ class Group < ActiveRecord::Base
 
   def refund_all
     self.users.each do |user|
-      payment_due = user.group_balance(self)
+      payment_due = (user.group_balance(self) / 100.0)
       refund_user(user, payment_due) unless user.id == self.admin_id
     end
     Message.admin_event(self, "closed") unless self.active == false
@@ -53,7 +53,7 @@ class Group < ActiveRecord::Base
   def refund_user(user, payment_due)
     admin_token = User.find(self.admin_id).token
     note = "Swear-jar refund for #{self.name}"
-    amount = payment_due/100.0
+    amount = payment_due
 
     conn = Faraday.new(:url => 'https://api.venmo.com') do |faraday|
         faraday.request  :url_encoded 

@@ -1,3 +1,4 @@
+<%= javascript_include_tag "group_index" %>
 <h1>Group Index</h1>
 <p>
   <%= link_to "Create a group", new_group_path, class: "btn btn-primary" %>
@@ -6,7 +7,7 @@
 <ul class="groups-list">
 <% @groups.each do |group| %>
   <li><div class="group-div">
-    <%= link_to "#{group.name}", group %> | <%= group.triggers.pluck(:name).join(', ') %> | Amount: $<%= group.amount %> | 
+    <%= link_to "#{group.name}", group %> | <%= group.triggers.pluck(:name).join(', ') %> | Amount: $<%= group.dollar_amount %> | 
     Admin: <%= link_to "#{group.admin.name}", group.admin %> 
 
     <button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %>"><%= @user.action_for_group(group) %></button>
