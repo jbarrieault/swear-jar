@@ -8,9 +8,6 @@
 [ ]About page (maybe just index w/ app definition
 
 [ ]Seed data
-[ ]Admin scan tweets button
-  - in layout
-  - in a div class="admin-button"
 
 
 Seed Data:

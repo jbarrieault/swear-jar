@@ -1,6 +1,7 @@
-<h1>Messages</h1>
+<%= javascript_include_tag 'messages' %>
+<h1>Messages</h1><button class="delete-messages btn btn-primary" type="button">Delete All Messages</button>
 
-<ul>
+<ul class="message-list">
 <% @user.messages.reverse.each do |message| %>
   <li><%= message.content %> | <%= link_to "Delete", user_message_path(id: message.id), method: 'delete' %></li>
   <strong>Viewed?</strong> <%= message.viewed? %>

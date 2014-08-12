@@ -3,12 +3,18 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.increment_view_count(@user)
+    gon.user_id = current_user.id
   end
 
   def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
-    redirect_to user_messages_path
+    if params[:message][:all]
+      current_user.messages.destroy_all
+      render json: current_user
+    else
+      @message = Message.find(params[:id])
+      @message.destroy
+      redirect_to user_messages_path
+    end
   end
 
   private
