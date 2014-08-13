@@ -13,17 +13,17 @@
 
           <div class="form-group">
             <%= label_tag "name" %>
-            <%= text_field_tag "name", nil, class: "form-control" %>
+            <%= text_field_tag "name", nil, class: "form-control", required: "required" %>
           </div>
 
           <div class="form-group">
             <%= label_tag "purpose" %>
-            <%= text_field_tag "purpose", nil, class: "form-control" %>
+            <%= text_field_tag "purpose", nil, class: "form-control", required: "required" %>
           </div>
 
           <div class="form-group">
             <%= label_tag "amount" %>
-            <%= select_tag "amount", options_for_select(@amounts), class: "form-control" %>
+            <%= select_tag "amount", options_for_select(@amounts), class: "form-control", required: "required" %>
           </div>
 
           <div id="triggers" class="form-group">

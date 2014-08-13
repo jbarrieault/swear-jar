@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   has_many :violations
   has_many :tweets, through: :violations
 
-  # validates_presence_of :name, :purpose
+  validates_presence_of :name, :purpose, :amount
 
   def self.admin_scan
     User.all.each do |user|
