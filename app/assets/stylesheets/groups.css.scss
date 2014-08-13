@@ -133,8 +133,8 @@ span.no-box {
 }
 
 span.little-box{
-  color: rgba($midGrey, 0.7);
-  background: $grey;
+  color: rgba($midGrey, 0.7)!important;
+  background: $grey !important;
   font-weight: 500;
   font-size: 12px !important;
 }
