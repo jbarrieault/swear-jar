@@ -21,7 +21,7 @@
 
         <!-- GROUP MODULE -->
         <% @user.messages.reverse.each do |message| %>
-              <div class="group-box viewed-<%= message.viewed? %> col-sm-10">
+              <div class="viewed-<%= message.viewed? %> group-box message-box col-sm-12">
                 <div class="top-box">
                   <div class="group-img-box">
                     <%= image_tag @users.find(message.sender).image_url, class: "group-img" %>
@@ -31,11 +31,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-2">
-              <div class="delete-btn">
-                <%= link_to "Delete", user_message_path(id: message.id), method: 'delete', class: "delete-messages btn btn-default" %>
-            </div>
+            <div class="join-btn-wrap">
+              <div class="delete-btn join-btn text-right">
+                 <%= link_to "Delete", user_message_path(id: message.id), method: 'delete', class: "delete-messages btn btn-default" %>
               </div>
+            </div>
         <% end %><!-- end GROUP MODULE -->
     
       </div>
