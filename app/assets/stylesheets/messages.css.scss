@@ -41,7 +41,7 @@
   margin-top: -45px;
 }
 
-.delete-all a.btn {
+.delete-all button.btn {
   color: $grey;
   background: $blue;
   -webkit-transition: all ease 0.25s;
@@ -55,7 +55,7 @@
   margin-bottom: -10px !important;
 }
 
-.delete-all a.btn:hover {
+.delete-all button.btn:hover {
   color: $blue;
   background: $grey;
 }
@@ -75,7 +75,7 @@
   width: 125px;
 }
 
-.delete-btn a{
+.delete-btn button{
   background-color: $red;
   color: white;
 }

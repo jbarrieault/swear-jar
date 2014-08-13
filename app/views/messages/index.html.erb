@@ -5,7 +5,9 @@
   <h1>Messages</h1>
 
   <div class="delete-all text-right">
-    <%= link_to "Delete All Messages", user_messages_destroy_path, class: "delete-messages btn btn-default" %>
+    <button type="button" class="delete-messages btn btn-default">Delete All Messages</button>
+
+    <%#= link_to "Delete All Messages", user_messages_destroy_path, class: "delete-messages btn btn-default" %>
   </div>
 </div>
 
@@ -21,7 +23,7 @@
 
         <!-- GROUP MODULE -->
         <% @user.messages.reverse.each do |message| %>
-              <div class="viewed-<%= message.viewed? %> group-box message-box col-sm-12">
+              <div id="message-<%= message.id %>" class="viewed-<%= message.viewed? %>  group-box message-box col-sm-12">
                 <div class="top-box">
                   <div class="group-img-box">
                     <%= image_tag @users.find(message.sender).image_url, class: "group-img" %>
@@ -33,7 +35,8 @@
               </div>
             <div class="join-btn-wrap">
               <div class="delete-btn join-btn text-right">
-                 <%= link_to "Delete", user_message_path(id: message.id), method: 'delete', class: "btn btn-default" %>
+                 <button id="<%= message.id %>" type="button" class="delete-message btn btn-default">Delete</button>
+                
               </div>
             </div>
         <% end %><!-- end GROUP MODULE -->

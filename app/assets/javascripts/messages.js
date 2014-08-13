@@ -1,34 +1,42 @@
 $(function(){
-  var user_id = gon.user_id
+  var userId = gon.user_id
   
   $('.delete-messages').click(function(){
     $.ajax({
       type: "DELETE",
-      url: "/users/"+user_id+"/messages",
+      url: "/users/"+userId+"/messages",
       data: {all: true },
       success: function(response){
         console.log("sweet");
-        $('.message-list').fadeOut('fast').html('');
+        $('.custom-panel-content').children().fadeOut('fast');
       }
     });
 
   });
 
-  //  $('.delete-message').click(function(){
-  //   var that = this;
+  $('.delete-message').click(function(e){
+    e.preventDefault();
+    var userId = gon.user_id
+    var messageId = $(this).attr('id');
+    var that = this;
+    var messageContent = $(this).closest('.custom-panel-content').find('#message-'+messageId);
 
-  //   $.ajax({
-  //     type: "DELETE",
-  //     url: "/users/"+user_id+"/messages",
-  //     success: function(response){
-  //       console.log("sweet");
-  //       // find message holding div
-  //       $(that).fadeOut('fast', function(){
-  //         $(that).remove();
-  //       })
-  //     }
-  //   });
+    $.ajax({
+      type: "DELETE",
+      url: "/users/"+userId+"/messages",
+      data: {id: messageId},
+      success: function(response){
+        console.log("sweet");
 
-  // });
+        $(that).fadeOut('fast', function(){
+          $(that).parent().remove();
+        });
+        $(messageContent).fadeOut('fast', function(){
+          $(messageContent).remove();
+        });
+      }
+    });
+
+  });
 
 });
