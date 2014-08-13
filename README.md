@@ -35,7 +35,6 @@ Seed Data:
     [x]venmo authorization page
   [ ]groups
     [ ]index - MITCH FINISH
-    
     [ ]show - MITCH (GRAPHS)
     [ ]closed - MITCH MODEL
   [ ]messages
@@ -46,4 +45,31 @@ Seed Data:
       [ ]make box smaller (Mitch?)
       [ ]delete button width + error (Jacob?)
       [ ]override hover styling (Mitch?)
+
+GROUPS
+
+I Heart Flatrion
+- App Academy
+- Dev Bootcamp
+- Hack Reactor
+
+Old Fogies
+- #yolo
+- #selfie
+- #beezin
+- #hashtag
+- #ratchet
+- #swag
+- #nom
+
+New Yorker
+- Tourists
+- Times Square
+- Chicago
+- LA
+
+
+
+
+
 
