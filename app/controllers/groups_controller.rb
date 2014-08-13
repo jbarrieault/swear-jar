@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 
   def index
-    @groups = Group.where(active: true).includes(:triggers)
+    @groups = Group.where(active: true).includes(:triggers).sort_by{ |g| g.name.downcase}
     @user   = current_user
   end
 

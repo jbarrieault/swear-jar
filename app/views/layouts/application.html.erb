@@ -41,10 +41,10 @@
         <li><%= link_to "Groups", groups_path %></li>
           <li><%= link_to "Messages", user_messages_path(current_user) %><span class="label label-danger"><%= current_user.new_message_count %></span></li>
           <li><%= link_to current_user.name, user_path(current_user), class: "small-nav" %></li>
-          <li><%= link_to 'Log Out', logout_path, class: "btn btn-primary small-btn" %></li>
+          <li><%= link_to 'Log Out', logout_path, class: "btn btn-primary small-btn login-buffer" %></li>
         <% else %>
           <li><%= link_to "Learn How Swear Jar Works" %></li>
-          <li><%= link_to 'Log In with Twitter', twitter_login_path, class: "btn btn-primary" %></li>
+          <li><%= link_to 'Log In with Twitter', twitter_login_path, class: "btn btn-primary login-buffer" %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

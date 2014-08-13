@@ -71,7 +71,6 @@
 /* BUTTONS */
 
 .join-btn-wrap {
-  background: green;
   width: 100%;
 }
 
@@ -124,28 +123,18 @@ btn.join-btn {
 @media screen and (max-width:770px) {
 
   .join-btn {
-    position: relative;
-    width: 54px;
+    float: none;
     height: 19px !important;
+    width: 50px !important;
     font-size: 10px !important;
-    padding: 2px;
-    float: left;
-    margin-top: -85px;
-    margin-left: 15px;
-  }
-
-  .join-btn a {
-    height: 19px !important;
-    font-size: 10px !important;
+    margin: 65px 0 -75px 15px;
     padding: 2px;
   }
 
-  .status {
-    width: 50px;
-    height: 19px;
-    left: 15px;
-    top: 75px;
-    font-size: 10px;
+  .join-btn button {
+    height: 19px !important;
+    width: 50px !important;
+    font-size: 10px !important;
     padding: 2px;
   }
 

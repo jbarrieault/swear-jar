@@ -1,5 +1,5 @@
 <!-- GROUP MODULE -->
-<% @groups.reverse.each do |group| %>
+<% @groups.each do |group| %>
   <%= link_to(group) do %>
       <div class="group-box col-sm-12">
         <div class="top-box">
@@ -27,7 +27,7 @@
   <% end %>
     <div class="join-btn-wrap">
       <div class="join-btn text-right">
-        <a href="#" id="<%= group.id %>" class="<%= @user.membership(group) %> btn btn-default"><%= @user.action_for_group(group) %></a> 
+        <button id="<%= group.id %>" class="<%= @user.membership(group) %> btn btn-default"><%= @user.action_for_group(group) %></button> 
       </div>
     </div>
 <% end %><!-- end GROUP MODULE -->

@@ -17,6 +17,21 @@ $red: #8A3324 !default;
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700,900);
 
+// NO HIGHLIGHTS EVER!!!!!!
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover {
+  outline:0px !important;
+  -webkit-appearance:none;
+}
+
 .admin-button {
   position: fixed;
   z-index: 1000;
@@ -58,6 +73,10 @@ h1 {
 
 .header-logo a:hover {
   text-decoration: none;
+}
+
+.login-buffer {
+  margin-left: 10px;
 }
 
 #wrap {
@@ -176,6 +195,10 @@ nav a.btn:hover {
   margin: 0 auto;
 }
 
+.label-danger {
+  background: rgba($red, 0.8) !important;
+}
+
 .logo-font {
   font-weight: 100 !important;
 }
@@ -213,7 +236,7 @@ nav a.btn:hover {
   margin:0;
   padding: 10px 20px;
   background: white;
-  overflow: scroll;
+  overflow: hidden;
   color: $midGrey;
 }
 
@@ -361,6 +384,10 @@ img.group-img {
     font-size: 12px;
   }
 
+  .group-box {
+    height: 175px;
+  }
+
 }
 
 /* PHONE */
@@ -378,10 +405,6 @@ img.group-img {
   .group-box .right-text {
     width: 175px;
     font-size: 12px;
-  }
-
-  .group-box {
-    overflow: scroll;
   }
 
 }
