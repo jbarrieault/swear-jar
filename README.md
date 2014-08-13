@@ -40,4 +40,10 @@ Seed Data:
     [ ]closed - MITCH MODEL
   [ ]messages
     [ ]index - MESSAGES (imitate /groups/index)
+      [x]initial styling
+      [x]gray out viewed messages
+      [x]add picture of sender
+      [ ]make box smaller (Mitch?)
+      [ ]delete button width + error (Jacob?)
+      [ ]override hover styling (Mitch?)
 

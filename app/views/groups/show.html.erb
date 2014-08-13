@@ -1,140 +1,150 @@
+<div class="blue-box"></div>
+
+<div class="header">
+  <h1><%= @group.name.titleize %> <span class="big-status <%= @group.status %>"><%= @group.status %></span></h1>
+  
+  <% unless current_user.admin?(@group) %>
+    <div class=" join-leave create-group text-right">
+      <button type="button" id="<%= @group.id %>" class="<%= current_user.membership(@group) %> btn btn-primary"><%= current_user.action_for_group(@group) %> Group
+      </button>
+    </div>
+  <% end %>
+</div>
+
+<div class="group-wrapper">
+
+<!-- FOR AJAX CALLS -->
 <%= javascript_include_tag "group_show", "Chart", "group_chart" %>
-<h1><%= @group.name %></h1>
+
+    <!-- LEFT SIDE -->
+    <div class="col-md-3">
+      
+      <!-- MONEY RAISED -->
+      <div class="custom-panel">
+        <div class="custom-panel-border"></div>
+        <div class="custom-panel-content">
+          <h3>Money Raised</h3>
+          <div class="text-center jar-fund-amount">
+            <% if @group.refunded == false %>
+              <h4><%= number_to_currency(@group.dollar_balance) %></h4>
+            <% else %>
+              <h4><s><%= number_to_currency(@group.dollar_balance) %></s><h4>
+              <h5>REFUNDED</h5>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end MONEY RAISED -->
+
+      <!-- INFO -->
+      <div class="custom-panel">
+        <div class="custom-panel-border"></div>
+        <div class="custom-panel-content">
+          <h3>Group Info</h3>
+          <ul class="info-list">
+            <li><strong>Goal:</strong> <span class="tag-box no-box text-center"><%= @group.purpose.titleize %></span></li>
+            <li><strong>Cost per tweet:</strong> <span class="tag-box cost-tag text-center"><%= number_to_currency(@group.dollar_amount) %></span></li>
+            <li><strong>Admin:</strong> <%= link_to @group.admin.name, user_path(@group.admin), class: "user-select admin-select text-center" %></li>
+            <li><strong>Triggers: </strong><% @group.triggers.each do |trigger| %>
+              <span class="tag-box text-center"><%= trigger.name.upcase %></span>
+            <% end %>
+            </li>
+            <li><strong>Members: </strong><% @group.users.each do |user| %>
+              <%= link_to user.name, user_path(user), class: "user-select text-center" %>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+      </div><!-- end INFO -->
+
+      <!-- Toolbar -->
+      <% if current_user.admin?(@group)%>
+      <div class="custom-panel">
+        <div class="custom-panel-border"></div>
+        <div class="custom-panel-content">
+          <h3>Toolbar</h3>
+          <% if @group.active  %>
+            <p><%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch", class: "btn btn-default btn-lg"%></p>
+          <% else %>
+            <p><%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete", class: "btn btn-default btn-lg" %></p>
+          <% end %>
+          <% if @group.refunded == false %>
+            <p><%= link_to "Refund Members", refund_group_path(group_id: @group.id), class: "btn btn-default btn-lg" %></p>
+          <% else %>
+            <p><button class="btn btn-default btn-lg disabled">Refund Issued</button></p>
+          <% end %>
+        </div>
+      </div>
+      <% end %><!-- end Toolbar -->
+
+    </div><!-- end LEFT SIDE -->
+
+    <!-- RIGHT SIDE -->
+    <div class="col-md-9">
+
+      <!-- RECENT VIOLATIONS -->
+      <div class="custom-panel">
+        <div class="custom-panel-border"></div>
+        <div class="custom-panel-content">
+          <h3>Recent Violations</h3>
+          <% if @group.tweets != [] %>
+            <% @group.tweets.last(3).each do |tweet| %>
+              <div class="group-box tweet-box col-sm-10">
+                <div class="tweet-info text-right">
+                  <%= link_to tweet.user.name, user_path(tweet.user) %> | <em><%= distance_of_time_in_words(Time.now - tweet.created_at) %> ago</em> |<% tweet.violations_in_group(@group).each do |t| %> 
+                    <span class="tag-box little-box text-center"><%= t.name.upcase %></span>
+                  <% end %>
+                </div>
+                <div class="top-box">
+                  <div class="group-img-box">
+                    <%= image_tag tweet.user.image_url, class: "group-img" %>
+                  </div>
+                  <div class="right-text">
+                    <p>"<%=h tweet.content %>"</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            You aint got not violations
+          <% end %>
+        </div>
+      </div><!-- end RECENT VIOLATIONS -->
+      
+
+      <!-- DATA VIZ -->
+      <% unless @group.violations.size == 0 %>
+      <div class="custom-panel">
+        <div class="custom-panel-border"></div>
+        <div class="custom-panel-content">
+          <h3>Data!</h3>
+          <div class="row">
+            <!-- GRAPH 1 -->
+            <div class="col-sm-6">
+              <div class="chart"><canvas id="bar-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Per User</h4></div>
+            </div><!-- end GRAPH 1 -->
+
+            <!-- GRAPH 2 -->
+            <div class="col-sm-6">
+                <div class="chart"><canvas id="pie-chart" width="600" height="400"></canvas><h4 class="text-center">Trigger Usage</h4></div>
+            </div><!-- end GRAPH 2 -->
+            
+          </div><!-- end ROW -->
+
+          <!-- GRAPH 3 -->
+          <div class="col-sm-12">
+            <div class="chart"><canvas id="line-chart" width="600" height="250"></canvas><h4 class="text-center">Violations Over Time</h4></div>
+          </div><!-- end GRAPH 3 -->
+        </div>
+      </div>
+      <% end %><!-- end DATA VIZ -->
 
 
-<!-- hide this button if admin -->
-<% unless current_user.admin?(@group) %>
-  <div class="join-leave">
-    <button type="button" id="<%= @group.id %>" class="<%= current_user.membership(@group) %> btn btn-primary"><%= current_user.action_for_group(@group) %>
-    </button>
-  </div>
-<% end %>
+    </div><!-- end RIGHT SIDE -->
+
+  <div class="clearfix"></div>
+</div><!-- end GROUP WRAPPER -->
 
 
-<p><strong>Status:</strong> <%= @group.status %></p>
-<p><strong>Charge:</strong> $<%= @group.dollar_amount %></p>
-
-<p><strong>Purpose:</strong> <%= @group.purpose %></p>
-<p><strong>Triggers:</strong> <%= @triggers.pluck(:name).map(&:titleize).join(', ') %></p>
-
-<h4>Recent Violations:</h4>
-<ul>
-  <% @group.tweets.each do |tweet| %>
-    <li><%=h tweet.content %> | By: <%= tweet.user.name %> | Violation: <%= tweet.violations_in_group(@group).map(&:titleize).join(', ') %></li>
-  <% end %>
-</ul>
-
-<h3>Jarfund: 
-  <% if @group.refunded == false %>
-    <%= number_to_currency(@group.dollar_balance) %> (<%= User.find(@group.admin_id).name %>)
-  <% else %>
-    <s><%= number_to_currency(@group.dollar_balance) %></s> REFUNDED (<%= User.find(@group.admin_id).name %>)
-  <% end %>
-</h3>
-<ul>
-<% @group.users.each do |user| %>
-  <li><%= link_to "#{user.name}", user %> | Violations: <%= user.violation_count(@group.id) %></li>
-<% end %>
-</ul>
-<% if current_user.admin?(@group)%>
-  <% if @group.active  %>
-    <%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch"%> 
-  <% else %>
-    Close Group
-  <% end %>|
-  <%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete" %><br>
-  <% if @group.refunded == false %>
-    <em>Didn't raise enough?</em><br>
-    <%= link_to "Click here to refund all group members", refund_group_path(group_id: @group.id) %>
-  <% else %>
-    You have already issued a refund for this group
-  <% end %>
-<% end %>
-
-<% unless @group.violations.size == 0 %>
-  <h2>Data!</h2>
-  <div class="big-div">
-  <div><canvas id="line-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Over Time</h4></div>
-  <div><canvas id="pie-chart" width="600" height="400"></canvas><h4 class="text-center">Trigger Usage</h4></div>
-  <div><canvas id="bar-chart" width="600" height="400"></canvas><h4 class="text-center">Violations Per User</h4></div>
-  </div>
-<% end %>
-
-<!-- this shouldn't be in the html file -->
- <script>
-// Chart.defaults.global.responsive = true;
-// // Chart.defaults.global.scaleIntegersOnly = true
-// // Chart.defaults.global.scaleBeginAtZero = true
-
-// var ctx = []
-//  ctx.push(document.getElementById("line-chart").getContext("2d"));
-//  ctx.push(document.getElementById("pie-chart").getContext("2d"));
-//  ctx.push(document.getElementById("bar-chart").getContext("2d"));
-
-
-// var triggerLabels  = gon.trigger_labels;
-// var triggerData = gon.trigger_data;
-// var violationLabels = gon.violation_labels;
-// var violationData = gon.violation_data;
-// var userLabels = gon.user_labels
-// var userData = gon.user_data
-// var colors = ["rgba(237, 238, 239, 1)", "rgba(127, 140, 141, 1)", "rgba(53, 57, 60, 1)", "rgba(52, 73, 94, 1)", "rgba(141, 170 198, 1)","rgba(59, 145, 47, 1)", "rgba(117, 190, 111, 1)"
-// ].reverse()
-// var highlightColors = ["rgba(237, 238, 239, .6)", "rgba(127, 140, 141, .6)", "rgba(53, 57, 60, .6)", "rgba(52, 73, 94, .6)", "rgba(141, 170 198, .6)","rgba(59, 145, 47, .6)", "rgba(117, 190, 111, .6)"].reverse()
-
-// var dailyViolationData = {
-//     labels: violationLabels,
-//     datasets: [
-//         {
-//             label: "Violations over time",
-//             fillColor: "rgba(141,170,198, .5)",
-//             strokeColor: "rgba(52,73,94,.8)",
-//             pointColor: "rgba(52,73,94,.8)",
-//             pointStrokeColor: "rgba(52,73,94,.8)",
-//             pointHighlightFill: "rgba(52,73,94,.1)",
-//             pointHighlightStroke: "rgba(52,73,94,1)",
-//             data: violationData
-//         } 
-//     ]
-// };
-
-// var triggerUsageData = []
-
-
-// for(var i = 0; i< triggerData.length; i++){
-//   triggerUsageData.push(
-//       {
-//         value: triggerData[i],
-//         color: colors[i],
-//         highlight: highlightColors[i],
-//         label: triggerLabels[i]
-//     });
-// }
-// console.log(userData);
-// console.log(userLabels);
-// var userViolationData = {
-//     labels: userLabels,
-//     datasets: [
-//         {
-//             label: "Violations per User",
-//             fillColor: "rgba(138,51,36,1)",
-//             strokeColor: "rgba(138,51,36,1)",
-//             highlightFill: "rgba(138,51,36,.6)",
-//             highlightStroke: "rgba(138,51,36,1)",
-//             data: userData
-//         }
-//     ]
-// };
-
-// var userViolationOptions = {scaleBeginAtZero : true}
-
-
-// var dailyViolations = new Chart(ctx[0]).Line(dailyViolationData, {bezierCurve : false,pointDotRadius : 2});
-
-// var triggerUsage = new Chart(ctx[1]).Pie(triggerUsageData);
-// var userViolations = new Chart(ctx[2]).Bar(userViolationData);
-
-
-// </script>
+  
 
 

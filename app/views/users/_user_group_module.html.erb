@@ -7,7 +7,7 @@
             <%= image_tag group.admin.image_url, class: "group-img" %>
           </div>
           <div class="right-text">
-            <h3><%= group.name %> <span>| <%= group.purpose %></span></h3>
+            <h3><%= group.name.titleize %> <span>| <%= group.purpose.titleize %></span></h3>
             <ul>
               <li><strong>Created by:</strong> <%= group.admin.name %></li>
               <div style="height:10px;"></div>

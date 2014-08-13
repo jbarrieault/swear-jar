@@ -19,14 +19,14 @@
       <h3>Latest Violation:</h3>
       <% if @latest_violation %>
         <p>"<%=h @latest_violation_content %>"</p>
-        <p class="text-muted text-right"><em><%= @latest_violation.minutes_ago %> minutes ago</em></p>
+        <p class="text-muted text-right"><em><%= distance_of_time_in_words(Time.now - @latest_violation.created_at) %> ago</em></p>
       <% else %>
         <p>"<%= @latest_violation_content %>"</p>
       <% end %>
     </div>
   </div>
 
-
+  <% if current_user == @user %>
   <!-- JOIN GROUP -->
   <div class="custom-panel">
     <div class="custom-panel-border"></div>
@@ -36,6 +36,7 @@
       <p><%= link_to 'Create a Group', new_group_path, class: "btn btn-default btn-lg" %></p>
     </div>
   </div>
+  <% end %>
 
   </div><!-- end LEFT SIDE -->
 

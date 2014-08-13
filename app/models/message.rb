@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
   def self.user_event(group, user, action)
     message = "#{user.name.capitalize} has #{action} #{group.name}"
     group.users.each do |u|
-      u.messages.build(content: message).save unless u == user
+      u.messages.build(content: message, sender: user.id).save unless u == user
     end
   end
 
@@ -17,7 +17,7 @@ class Message < ActiveRecord::Base
   def self.admin_event(group, action)
     message = "#{group.admin.name} has #{action} #{group.name}."
     group.users.each do |user|
-      user.messages.build(content: message).save unless user == group.admin
+      user.messages.build(content: message, sender: group.admin.id).save unless user == group.admin
     end
   end
 
@@ -25,7 +25,7 @@ class Message < ActiveRecord::Base
     group.users.each do |user|
       refund_amt = '%.2f' % (user.group_balance(group) / 100.0)
       message = "You have been refunded $#{refund_amt} from #{group.name}."
-      user.messages.build(content: message).save unless user == group.admin
+      user.messages.build(content: message, sender: group.admin.id).save unless user == group.admin
     end
   end
 

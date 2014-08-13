@@ -30,6 +30,7 @@
   margin: 45px 0 0 0;
 }
 
+
 .create-group {
   postion: relative;
   z-index: 100;
@@ -38,8 +39,8 @@
 }
 
 .create-group a.btn {
-  color: $grey;
-  background: $blue;
+  color: $grey !important;
+  background: $blue !important;
   -webkit-transition: all ease 0.25s;
   -moz-transition: all ease 0.25s;
   -o-transition: all ease 0.25s;
@@ -47,8 +48,25 @@
 }
 
 .create-group a.btn:hover {
-  color: $blue;
-  background: $grey;
+  color: $blue !important;
+  background: $grey !important;
+}
+
+.create-group button {
+  color: $grey !important;
+  background: $blue !important;
+  border-color: white !important;
+  font-weight: 400 !important;
+  -webkit-transition: all ease 0.25s;
+  -moz-transition: all ease 0.25s;
+  -o-transition: all ease 0.25s;
+  transition: all ease 0.25s;
+}
+
+.create-group button:hover {
+  border-color: white !important;
+  color: $blue !important;
+  background: $grey !important;
 }
 
 .custom-panel-content {
@@ -65,6 +83,111 @@
   height: 34px !important;
   margin-top: -2px !important;
 }
+
+/* GROUP SHOW PAGE */
+
+.jar-fund-amount h4 {
+  color: $green;
+  weight: 900;
+  font-size: 64px;
+}
+
+.jar-fund-amount h5 {
+  letter-spacing: 1px;
+}
+
+ul.info-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.info-list li {
+}
+
+ul.info-list li strong {
+  color: rgba($darkGrey, 0.8);
+  font-size: 18px;
+  padding-bottom: 5px; 
+}
+
+span.tag-box {
+  color: $grey;
+  background: rgba($red, 0.9);
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 0 4px 3px 0;
+  font-weight: 700;
+  display: inline-block;
+}
+
+span.cost-tag {
+  background: $green;
+}
+
+span.no-box {
+  color: $blue;
+  background: none;
+  display: default;
+  font-size: 18px;
+}
+
+span.little-box{
+  color: rgba($midGrey, 0.7);
+  background: $grey;
+  font-weight: 500;
+  font-size: 12px !important;
+}
+
+a.user-select {
+  color: $grey;
+  text-decoration: none;
+  background: rgba($blue, 0.9);
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 0 4px 3px 0;
+  font-weight: 700;
+  display: inline-block;
+}
+
+a.user-select:hover {
+  color: $grey;
+  background: $blue;
+  text-decoration: none;
+}
+
+a.admin-select {
+  background: rgba($darkGrey, 0.9);
+}
+
+a.admin-select:hover {
+  background: $darkGrey; 
+}
+
+.tweet-box {
+  height: 100px !important;
+}
+
+.tweet-box p {
+  font-size: 18px;
+}
+
+.tweet-info {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.tweet-info a {
+  color: $midGrey;
+}
+
+.chart {
+  margin-bottom: 50px;
+}
+
 
 
 
@@ -118,6 +241,15 @@ btn.join-btn {
   background: $red !important;
 }
 
+.header h1 span {
+  font-size: 18px !important;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: $grey;
+  position: relative;
+  top: -5px;
+}
+
 /* TABLET FIX */
 
 @media screen and (max-width:770px) {
@@ -144,7 +276,6 @@ btn.join-btn {
 /* PHONE */
 
 @media screen and (max-width:480px) {
-
 
 
 }

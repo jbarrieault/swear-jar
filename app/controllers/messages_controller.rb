@@ -3,11 +3,13 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.increment_view_count(@user)
+    @user = current_user
+    @users = User.all
     gon.user_id = current_user.id
   end
 
   def destroy
-    if params[:message][:all]
+    if params[:message][:all] == "true"
       current_user.messages.destroy_all
       render json: current_user
     else
