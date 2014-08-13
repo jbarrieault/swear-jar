@@ -47,3 +47,8 @@ Seed Data:
       [ ]delete button width + error (Jacob?)
       [ ]override hover styling (Mitch?)
 
+
+POST SCIENCE FAIR TODO:
+
+[ ]client and server side validations for new/edit group
+
