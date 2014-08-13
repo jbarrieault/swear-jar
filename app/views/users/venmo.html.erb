@@ -1,6 +1,8 @@
 <% if current_user.encrypted_token %>
-  <div class="panel panel-default col-sm-6 col-sm-offset-3">
-    <div class="panel-body">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="custom-panel">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
       <%= render 'application/logo' %>
       <div class="venmo-panel">
 
@@ -14,11 +16,14 @@
         <%= link_to 'See Your User Page', user_path(current_user), class: "btn btn-success btn-lg" %>
         </div>
       </div>
+      </div>
     </div>
 <% else %>
   
-  <div class="panel panel-default col-sm-6 col-sm-offset-3">
-    <div class="panel-body">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="custom-panel">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
       <%= render 'application/logo' %>
       <div class="venmo-panel">
 
@@ -31,6 +36,7 @@
         <div class="text-center venmo-btn">
         <%= link_to 'Authorize Venmo', venmo_login_path, class: "btn btn-success btn-lg" %>
         </div>
+      </div>
       </div>
     </div>
   </div>

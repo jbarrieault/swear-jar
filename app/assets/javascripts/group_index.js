@@ -54,11 +54,12 @@ $(function(){
     var group_id = $(this).attr('id');
     var that = $(this);
  
-    $(this).attr('class', 'nonmember btn btn-default');
-    $(this).child.attr('class', 'closed')
+    $(this).attr('class', 'btn btn-default');
     
     if (confirm("Are you sure you want to close this group?")){
-      $(this).closest('li').hide();
+      $(this).closest('.join-btn-wrap').fadeOut();
+      $(this).parent().parent().parent().find('a[href$="'+group_id+'"]').fadeOut();
+
 
       $.ajax({
         type: 'PATCH',
@@ -66,12 +67,14 @@ $(function(){
         data: {group_id: group_id },
         success: function(response){
           console.log("closing worked");
-          that.closest('li').remove();
+          that.closest('.join-btn-wrap').remove();
+          that.parent().parent().parent().find('a[href$="'+group_id+'"]').remove();
 
         },
         error: function(response){
           console.log("closing failed");
-          that.closest('li').show();
+          that.closest('.join-btn-wrap').show();
+          that.parent().parent().parent().find('a[href$="'+group_id+'"]').remove();
         }
       });
 
