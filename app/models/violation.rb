@@ -13,7 +13,7 @@ class Violation < ActiveRecord::Base
     unless user.id == admin.id
       admin_venmo_id = admin.venmo_id
       amount = self.group.dollar_amount
-      time = self.tweet.created_at.strftime("%I:%M:%S %p")
+      time = self.tweet.created_at.strftime("%I:%M:%S %p").gsub(":", " ")
       note = "I said #{words} on twitter around #{time} UTC. auto-payment via swear-jar"
       access_token = user.token
 
