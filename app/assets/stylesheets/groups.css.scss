@@ -4,10 +4,6 @@
 
 @import "custom"; // GRAB SASS VARS
 
-.big-div div{
-  float:left;
-}
-
 .blue-box {
   width: 100%;
   height: 120px;
@@ -56,14 +52,101 @@
 }
 
 .custom-panel-content {
-  padding: 25px 0;
+  padding: 25px 20px 15px !important;
 }
 
-.cost-per-tweet {
-  top: 37px;
+
+
+/* BUTTONS */
+
+.join-btn-wrap {
+  background: green;
+  width: 100%;
 }
 
 .join-btn {
-  padding:15px;
-  vertical-align: center;
+  position: relative;
+  top: -145px;
+  width: 75px;
+  margin-bottom: -35px;
+  margin-right: 17px;
+  text-align: right;
+  float: right;
 }
+
+btn.join-btn {
+  width: 75px;
+}
+
+.leave-btn-grey {
+  color: rgba($darkGrey, 0.8) !important;
+  font-weight: 700 !important;
+  background: rgba($grey, 0.5) !important;
+}
+
+.leave-btn-grey:hover {
+  background: $grey !important;
+}
+
+.nonmember-btn-green {
+  color: white !important;
+  font-weight: 700 !important;
+  background: rgba($green, 0.9) !important;
+}
+
+.nonmember-btn-green:hover {
+  background: $green !important;
+}
+
+.close-btn-red {
+  color: white !important;
+  font-weight: 700 !important;
+  background: rgba($red, 0.9) !important;
+}
+
+.close-btn-red:hover {
+  background: $red !important;
+}
+
+/* TABLET FIX */
+
+@media screen and (max-width:770px) {
+
+  .join-btn {
+    position: relative;
+    width: 54px;
+    height: 19px !important;
+    font-size: 10px !important;
+    padding: 2px;
+    float: left;
+    margin-top: -85px;
+    margin-left: 15px;
+  }
+
+  .join-btn a {
+    height: 19px !important;
+    font-size: 10px !important;
+    padding: 2px;
+  }
+
+  .status {
+    width: 50px;
+    height: 19px;
+    left: 15px;
+    top: 75px;
+    font-size: 10px;
+    padding: 2px;
+  }
+
+}
+
+
+/* PHONE */
+
+@media screen and (max-width:480px) {
+
+
+
+}
+
+

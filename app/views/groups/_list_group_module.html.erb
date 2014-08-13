@@ -1,7 +1,7 @@
 <!-- GROUP MODULE -->
 <% @groups.reverse.each do |group| %>
   <%= link_to(group) do %>
-      <div class="group-box col-sm-10">
+      <div class="group-box col-sm-12">
         <div class="top-box">
           <div class="group-img-box">
             <%= image_tag group.admin.image_url, class: "group-img" %>
@@ -17,7 +17,6 @@
             </ul>
           </div>
         </div>
-        <button type="button" id="<%= group.id %>" class="<%= @user.membership(group) %> btn btn-default"><%= @user.action_for_group(group) %></button>
         <div class="cost-per-tweet text-center">
           <h4>
             <%= number_to_currency(group.dollar_amount) %>
@@ -26,4 +25,9 @@
         </div>
       </div>
   <% end %>
+    <div class="join-btn-wrap">
+      <div class="join-btn text-right">
+        <a href="#" id="<%= group.id %>" class="<%= @user.membership(group) %> btn btn-default"><%= @user.action_for_group(group) %></a> 
+      </div>
+    </div>
 <% end %><!-- end GROUP MODULE -->

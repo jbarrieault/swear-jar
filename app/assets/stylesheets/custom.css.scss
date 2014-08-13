@@ -356,6 +356,11 @@ img.group-img {
     font-size: 12px;
   }
 
+  .group-box .right-text {
+    width: 300px;
+    font-size: 12px;
+  }
+
 }
 
 /* PHONE */
@@ -371,15 +376,13 @@ img.group-img {
   }
 
   .group-box .right-text {
-    width: 200px;
+    width: 175px;
     font-size: 12px;
   }
 
   .group-box {
     overflow: scroll;
   }
-
-
 
 }
 

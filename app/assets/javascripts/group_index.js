@@ -1,10 +1,11 @@
 $(function(){
 
+  // JOIN BUTTON
   $('.join-btn').on('click', '.nonmember', function(){ 
     var group_id = $(this).attr('id');
     var that = $(this);
     
-    $(this).attr('class', 'member btn btn-default');
+    $(this).attr('class', 'member btn btn-default leave-btn-grey');
     $(this).text('Leave');
 
     $.ajax({
@@ -24,11 +25,12 @@ $(function(){
   });
 
 
+  // LEAVE BUTTON
   $('.join-btn').on('click', '.member', function(){
     var group_id = $(this).attr('id');
     var that = $(this);
  
-    $(this).attr('class', 'nonmember btn btn-default');
+    $(this).attr('class', 'nonmember btn btn-default nonmember-btn-green');
     $(this).text('Join');
 
     $.ajax({
@@ -41,19 +43,19 @@ $(function(){
       },
       error: function(response){
         console.log("leaving failed");
-        that.attr('class', 'member btn btn-default');
         $(this).text('Leave');
       }
     });
 
   });
 
-
+  // CLOSE BTN
   $('.join-btn').on('click', '.admin', function(){
     var group_id = $(this).attr('id');
     var that = $(this);
  
     $(this).attr('class', 'nonmember btn btn-default');
+    $(this).child.attr('class', 'closed')
     
     if (confirm("Are you sure you want to close this group?")){
       $(this).closest('li').hide();

@@ -1,5 +1,5 @@
 <!-- GROUP MODULE -->
-<% @user.user_groups.each do |group| %>
+<% @user.user_groups.sort_by(&:status).reverse.each do |group| %>
   <%= link_to(group) do %>
       <div class="group-box col-sm-10">
         <div class="top-box">

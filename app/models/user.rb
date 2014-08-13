@@ -181,9 +181,9 @@ class User < ActiveRecord::Base
 
   def membership(group)
     if member?(group) 
-      group.admin == self ? "admin" : "member"
+      group.admin == self ? "admin close-btn-red" : "member leave-btn-grey"
     else
-      "nonmember"
+      "nonmember nonmember-btn-green"
     end
   end
 
