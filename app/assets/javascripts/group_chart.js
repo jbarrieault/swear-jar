@@ -16,9 +16,9 @@ $(function(){
     var violationData = gon.violation_data;
     var userLabels = gon.user_labels
     var userData = gon.user_data
-    var colors = ["rgba(237, 238, 239, 1)", "rgba(127, 140, 141, 1)", "rgba(53, 57, 60, 1)", "rgba(52, 73, 94, 1)", "rgba(141, 170 198, 1)","rgba(59, 145, 47, 1)", "rgba(117, 190, 111, 1)"
-    ].reverse()
-    var highlightColors = ["rgba(237, 238, 239, .6)", "rgba(127, 140, 141, .6)", "rgba(53, 57, 60, .6)", "rgba(52, 73, 94, .6)", "rgba(141, 170 198, .6)","rgba(59, 145, 47, .6)", "rgba(117, 190, 111, .6)"].reverse()
+    var colors = ["rgba(127, 140, 141, 1)", "rgba(52, 73, 94, 1)", "rgba(59, 145, 47, 1)","rgba(53, 57, 60, 1)", "rgba(141, 170, 198, 1)", "rgba(237, 238, 239, 1)", "rgba(117, 190, 111, 1)"
+    ]
+    var highlightColors = ["rgba(127, 140, 141, .6)", "rgba(52, 73, 94, .6)", "rgba(59, 145, 47, .6)","rgba(53, 57, 60, .6)", "rgba(141, 170, 198, .6)", "rgba(237, 238, 239, .6)", "rgba(117, 190, 111, .6)"]
 
     var dailyViolationData = {
         labels: violationLabels,

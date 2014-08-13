@@ -77,7 +77,7 @@ class Group < ActiveRecord::Base
     labels = []
     self.triggers.each do |trigger|
       labels << trigger.name
-      data << trigger.violations.count
+      data << trigger.violations.where(group_id: self.id).count
     end
     return [data, labels]
   end

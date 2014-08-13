@@ -88,10 +88,10 @@
       <!-- RECENT VIOLATIONS -->
       <div class="custom-panel">
         <div class="custom-panel-border"></div>
-        <div class="custom-panel-content">
-          <h3>Recent Violations</h3>
+        <div class="custom-panel-content scroll-box">
+          <h3>Violations</h3>
           <% if @group.tweets != [] %>
-            <% @group.tweets.last(3).reverse.each do |tweet| %>
+            <% @group.tweets.reverse.each do |tweet| %>
               <div class="group-box tweet-box col-sm-10">
                 <div class="tweet-info text-right">
                   <%= link_to tweet.user.name, user_path(tweet.user) %> | <em><%= distance_of_time_in_words(Time.now - tweet.created_at) %> ago</em> |<% tweet.violations_in_group(@group).each do |t| %> 

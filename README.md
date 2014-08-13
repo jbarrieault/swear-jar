@@ -45,7 +45,6 @@ POST SCIENCE FAIR TODO:
 [ ]client and server side validations for new/edit group
 [ ]Delete button modal in groups/show
 
-<<<<<<< HEAD
 GROUPS
 
 I Heart Flatrion

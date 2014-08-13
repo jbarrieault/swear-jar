@@ -22,6 +22,7 @@
       <div class="custom-panel-content">
 
         <!-- GROUP MODULE -->
+      <% if @user.messages != [] %>
         <% @user.messages.reverse.each do |message| %>
               <div id="message-<%= message.id %>" class="viewed-<%= message.viewed? %>  group-box message-box col-sm-12">
                 <div class="top-box">
@@ -40,6 +41,14 @@
               </div>
             </div>
         <% end %><!-- end GROUP MODULE -->
+      <% else %>
+        <div class="group-box error-box tweet-box col-sm-12">
+          <div class="top-box text-center">
+            <h3>You don't have any messages</h3>
+            <p>This is so sad</p>
+          </div>
+        </div>
+      <% end %>
     
       </div>
     </div>
