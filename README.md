@@ -1,7 +1,7 @@
 # Swear Jar
 
 ## todo
-[ ]new - JACOB (imitate /venmo)
+[X]new - JACOB (imitate /venmo)
 [ ]edit - JACOB (imitate /venmo)
 
 
@@ -46,4 +46,9 @@ Seed Data:
       [x]make box smaller 
       [x]delete button width + error 
       [x]override hover styling 
+
+
+POST SCIENCE FAIR TODO:
+
+[ ]client and server side validations for new/edit group
 
