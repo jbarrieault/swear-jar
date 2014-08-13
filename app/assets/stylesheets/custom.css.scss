@@ -17,6 +17,18 @@ $red: #8A3324 !default;
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700,900);
 
+.admin-button {
+  position: fixed;
+  z-index: 1000;
+  bottom: 5px;
+  right: 5px;
+  opacity: 0.2;
+
+}
+.admin-button:hover {
+  opacity: 0.3;
+}
+
 html, body {
   height: 100%;
   font-family: 'Lato', sans-serif;
@@ -361,6 +373,10 @@ img.group-img {
   .group-box .right-text {
     width: 200px;
     font-size: 12px;
+  }
+
+  .group-box {
+    overflow: scroll;
   }
 
 

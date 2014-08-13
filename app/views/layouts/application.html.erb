@@ -10,6 +10,9 @@
   <%= include_gon %>
 </head>
 <body>
+  <div class="admin-button">
+    <button class="scan btn btn-primary small-btn" type="button">Scan</button>
+  </div>
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
@@ -45,11 +48,6 @@
         <% else %>
           <li><%= link_to 'Log In with Twitter', twitter_login_path, class: "btn btn-primary" %></li>
         <% end %>
-          <li>
-            <div class="admin-button">
-              <button class="scan btn btn-primary small-btn" type="button">Scan</button>
-            </div>
-          </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
