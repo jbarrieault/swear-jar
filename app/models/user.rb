@@ -203,6 +203,10 @@ class User < ActiveRecord::Base
     self.name.split(" ").first
   end
 
+  def triggers
+    self.groups.includes(:triggers).map { |g| g.triggers }.flatten
+  end
+
 
 
 end
