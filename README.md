@@ -1,6 +1,8 @@
 # Swear Jar
 
 ## todo
+[ ]new - JACOB (imitate /venmo)
+[ ]edit - JACOB (imitate /venmo)
 
 
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
@@ -33,8 +35,7 @@ Seed Data:
     [x]venmo authorization page
   [ ]groups
     [ ]index - MITCH FINISH
-    [ ]new - JACOB (imitate /venmo)
-    [ ]edit - JACOB (imitate /venmo)
+    
     [ ]show - MITCH (GRAPHS)
     [ ]closed - MITCH MODEL
   [ ]messages

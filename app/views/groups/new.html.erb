@@ -1,32 +1,52 @@
 <%= javascript_include_tag "new_group" %>
-<h1>Create a group</h1>
 
-<%= form_tag groups_path do %>  
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="custom-panel">
+      <div class="custom-panel-border"></div>
+      <div class="custom-panel-content">
 
-  <p>
-    <%= label_tag "name" %>
-    <%= text_field_tag "name"%>
-  </p>
+      
 
-  <p>
-    <%= label_tag "purpose" %>
-    <%= text_field_tag "purpose" %>
-  </p>
+        <h2 class="text-center">Create a group</h2>
+        
+        <%= form_tag groups_path, role: "form" do -%>  
 
-  <p>
-    <%= label_tag "amount" %>
-    <%= select_tag "amount", options_for_select(@amounts) %>
-  </p>
+          <div class="form-group">
+            <%= label_tag "name" %>
+            <%= text_field_tag "name", nil, class: "form-control" %>
+          </div>
 
-  <div id="triggers">
-    <%= label_tag "triggers" %>
-    <p class="trigger">
-      <input name="triggers[]" type="text" placeholder="add a trigger">
-    <button class="add-trigger" type="button">+</button ></p>
+          <div class="form-group">
+            <%= label_tag "purpose" %>
+            <%= text_field_tag "purpose", nil, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag "amount" %>
+            <%= select_tag "amount", options_for_select(@amounts), class: "form-control" %>
+          </div>
+
+          <div id="triggers" class="form-group">
+            <%= label_tag "triggers" %>
+            <p class="trigger">
+              <input name="triggers[]" type="text" placeholder="add a trigger" class="form-control trigger-box">
+            <button class="add-trigger btn btn-default btn-sm" type="button">+</button ></p>
+          </div>
+
+          <div class="form-group text-center venmo-btn">
+            <%= submit_tag "Create group", class: "btn btn-success btn-lg" %>
+          </div>
+
+        <% end %>
+
+        <!-- <div class="text-center venmo-btn">
+        <%#= link_to 'Authorize Venmo', venmo_login_path, class: "btn btn-success btn-lg" %>
+        </div> -->
+      </div>
+    </div> 
+    
   </div>
 
-  <p>
-    <%= submit_tag "Create group" %>
-  </p>
 
-<% end %>
+
+   

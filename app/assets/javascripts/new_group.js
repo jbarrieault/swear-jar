@@ -10,7 +10,7 @@ $(function(){
       closest('p.trigger').find('input').focus();
 
     $(this).hide().closest('p.trigger').
-       append('<button class="remove-trigger" type="button">-</button>');
+       append('<button class="remove-trigger btn btn-default btn-sm" type="button">-</button>');
     
     $(this).remove();
   });
