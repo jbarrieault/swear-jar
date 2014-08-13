@@ -17,8 +17,17 @@
     <div class="custom-panel">
       <div class="custom-panel-border"></div>
       <div class="custom-panel-content">
+        <% if @groups != [] %>
+          <%= render "list_group_module" %>
+        <% else %>
+          <div class="group-box error-box tweet-box col-sm-12">
+            <div class="top-box text-center">
+              <h3>There are no groups yet!</h3>
+              <p>This is the moment you're entire life has been building up to. Go make a group!</p>
+            </div>
+          </div>
+        <% end %>
 
-        <%= render "list_group_module" %>
     
       </div>
     </div>

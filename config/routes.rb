@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users do 
     resources :messages, only: [:index, :destroy]
-    delete '/messages' => 'messages#destroy'
+    delete '/messages' => 'messages#destroy', as: "messages_destroy"
   end
 
   resources :groups

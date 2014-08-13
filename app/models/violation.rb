@@ -41,8 +41,4 @@ class Violation < ActiveRecord::Base
     ].sample
   end
 
-  def minutes_ago
-    ((Time.now - self.tweet.created_at) / 60).round
-  end
-
 end

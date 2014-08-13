@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @latest_violation = @user.violations.first
+    @latest_violation = @user.violations.last
     if @latest_violation
       @latest_violation_content = @latest_violation.tweet.content
     else

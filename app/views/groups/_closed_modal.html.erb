@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="modal fade" id="closeGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="custom-panel">
+    <div class="custom-panel-border"></div>
+    <div class="custom-panel-content">
+      <div class="venmo-panel">
+        <div class="panel-copy text-center">
+          <h3>Are you sure you want to close this group?</h3>
+        </div>
+
+        <h2 class="text-center"><%= @group.name.titleize %></h2>
+        
+        <p style="padding: 10px 0 15px;">This action cannot be undone. We will no longer track your tweets, or charge you for saying: <strong><%= @group.triggers.pluck(:name).join(", ") %></strong>.</p>
+
+        <div class="text-center col-md-10 col-md-offset-1">
+        <% if @group.active  %>
+            <p><%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch", class: "btn btn-default btn-lg"%></p>
+          <% else %>
+            <p><%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete", class: "btn btn-default btn-lg" %></p>
+          <% end %>
+          <% if @group.refunded == false %>
+            <p><%= link_to "Refund Members and Close", refund_group_path(group_id: @group.id), class: "btn btn-default btn-lg" %></p>
+          <% else %>
+            <p><button class="btn btn-default btn-lg disabled">Refund Issued</button></p>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>

@@ -32,6 +32,26 @@ button:hover {
   -webkit-appearance:none;
 }
 
+.error-holder {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+p.error, p.notice {
+  color: white;
+  text-align: center;
+  background: rgba($green, 0.7);
+  position: relative;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: 700;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 5px 25px;
+  border-radius: 3px;
+}
+
 .admin-button {
   position: fixed;
   z-index: 1000;
@@ -324,6 +344,15 @@ img.group-img {
   padding: 5px;
 }
 
+.big-status {
+  color: white !important;
+  border-radius: 3px;
+  text-align: center;
+  padding: 5px;
+}
+
+
+
 .closed {
   background: $red;
 }
@@ -350,6 +379,24 @@ img.group-img {
 }
 
 .cost-per-tweet p {
+  font-weight: 100;
+}
+
+.error-box {
+  background: $red;
+  color: $grey !important;
+  line-height: 20px;
+  font-weight: 300;
+  border-color: rgba($red, 0.7);
+}
+
+.error-box:hover {
+  background: $red;
+}
+
+.error-box h3 {
+  padding: 12px 0 0;
+  color: $grey;
   font-weight: 100;
 }
 

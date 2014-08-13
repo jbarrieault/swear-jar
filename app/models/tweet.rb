@@ -4,6 +4,6 @@ class Tweet < ActiveRecord::Base
   has_many   :groups, through: :violations
 
   def violations_in_group(group)
-    self.violations.where(group_id: group.id).first.triggers.pluck(:name)
+    self.violations.where(group_id: group.id).first.triggers
   end
 end

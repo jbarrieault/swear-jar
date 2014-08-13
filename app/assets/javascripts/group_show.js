@@ -5,7 +5,7 @@ $(function(){
     var that = $(this);
     
     $(this).attr('class', 'member btn btn-primary');
-    $(this).text('leave');
+    $(this).text('Leave Group');
 
     $.ajax({
       type: 'POST',
@@ -17,7 +17,7 @@ $(function(){
       error: function(response){
         that.attr('class', 'nonmember');
         console.log("joining failed");
-        $(this).text('join');
+        $(this).text('Join Group');
       } 
     });
 
@@ -30,7 +30,7 @@ $(function(){
     var that = $(this);
  
     $(this).attr('class', 'nonmember btn btn-primary');
-    $(this).text('join');
+    $(this).text('Join Group');
 
     $.ajax({
       type: 'POST',
@@ -43,7 +43,7 @@ $(function(){
       error: function(response){
         console.log("leaving failed");
         that.attr('class', 'member');
-        $(this).text('leave');
+        $(this).text('Leave Group');
       }
     });
 
