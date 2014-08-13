@@ -207,6 +207,10 @@ class User < ActiveRecord::Base
     self.groups.includes(:triggers).map { |g| g.triggers }.flatten
   end
 
+  def your_or_name(current_user)
+    current_user == self ? "Your" : "#{self.name.titleize}'s"
+  end
+
 
 
 end

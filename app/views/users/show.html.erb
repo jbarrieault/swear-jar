@@ -1,7 +1,7 @@
 <div class="blue-box"></div>
 
 <div class="header text-right">
-  <h1>Welcome, <%= @user.name %>!</h1>
+  <h1><% if current_user == @user %>Welcome, <% end %><%= @user.name %></h1>
 </div>
 
 <div class="user-top">
@@ -26,7 +26,8 @@
     </div>
   </div>
 
-    <!-- TRIGGERS -->
+  <% if current_user == @user %>
+  <!-- TRIGGERS -->
   <div class="custom-panel">
     <div class="custom-panel-border"></div>
     <div class="custom-panel-content">
@@ -36,6 +37,7 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
   <% if current_user == @user %>
   <!-- JOIN GROUP -->
@@ -59,14 +61,14 @@
     <!-- Violations -->
     <div class="custom-panel-border"></div>
     <div class="custom-panel-content">
-    <h3>Your Groups:</h3>
+    <h3><%= @user.your_or_name(current_user) %> Groups:</h3>
       <% if @user.groups != [] %>
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>Admin</h2>
           <% if @user.admin_groups != [] %>
             <%= render "admin_group_module" %>
-          <% else %>
+          <% elsif current_user == @user %>
           <div class="group-box error-box tweet-box col-sm-10">
             <div class="top-box text-center">
                 <h3>You are not the admin of any groups.</h3>
@@ -80,9 +82,9 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>User</h2>
-          <% if @user.user_groups != [] %>
+          <% if @user.user_groups != []%>
             <%= render "user_group_module" %>
-          <% else %>
+          <% elsif current_user == @user %>
             <div class="group-box error-box tweet-box col-sm-10">
               <div class="top-box text-center">
                 <h3>You're not a member of any groups.</h3>
@@ -92,7 +94,7 @@
           <% end %>
         </div>
       </div>
-      <% else %>
+      <% elsif current_user == @user %>
         <div class="group-box error-box tweet-box col-sm-10">
           <div class="top-box text-center">
               <h3>You look lonely... you don't belong to any groups.</h3>
