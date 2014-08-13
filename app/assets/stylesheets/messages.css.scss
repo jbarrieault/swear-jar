@@ -50,6 +50,11 @@
   transition: all ease 0.25s;
 }
 
+.message-box {
+  height: 80px !important;
+  margin-bottom: -10px !important;
+}
+
 .delete-all a.btn:hover {
   color: $blue;
   background: $grey;
@@ -64,7 +69,18 @@
 }
 
 .delete-btn {
+  top: -65px;
   padding:15px;
   vertical-align: center;
+  width: 125px;
+}
+
+.delete-btn a{
+  background-color: $red;
+  color: white;
+}
+
+.viewed-true:hover{
+  background: $grey !important;
 }
 

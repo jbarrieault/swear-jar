@@ -43,9 +43,9 @@ Seed Data:
       [x]initial styling
       [x]gray out viewed messages
       [x]add picture of sender
-      [ ]make box smaller (Mitch?)
-      [ ]delete button width + error (Jacob?)
-      [ ]override hover styling (Mitch?)
+      [x]make box smaller 
+      [x]delete button width + error 
+      [x]override hover styling 
 
 
 POST SCIENCE FAIR TODO:
