@@ -77,6 +77,19 @@ h1 {
   font-weight: 900 !important;
 }
 
+ol.steps {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba($darkGrey, 0.8);
+}
+
+.call-to-action h3 {
+  font-weight: 900;
+  color: $blue;
+  font-size: 36px;
+  padding-bottom: 25px;
+}
+
 .header-logo {
   top: 8px;
   position: relative;
@@ -171,20 +184,29 @@ nav a.btn:hover {
 }
 
 .home-page-jumbotron {
-  color: white !important;
   height: 500px;
-  background: white !important;
+  background: url('http://i.imgur.com/5VCH5D9.jpg') no-repeat top center !important;  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.box-shadow {
+  -moz-box-shadow: 0 0 25px rgba($darkGrey, 0.2);
+  -webkit-box-shadow: 0 0 25px rgba($darkGrey, 0.2);
+  box-shadow: 0px 0px 25px rgba($darkGrey, 0.2);
 }
 
 .call-to-action {
   height: 100px;
   top: 50px;
-  margin: 75px 0 50px; 
+  margin: 125px 0 200px; 
 }
 
 .call-text p, .call-btn-box p  {
   font-size: 18px;
-  padding: 25px 25px 0 0;
+  padding: 35px 25px 0 0;
 }
 
 .small-nav {

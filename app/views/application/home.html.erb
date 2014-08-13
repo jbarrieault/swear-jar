@@ -1,12 +1,11 @@
-<div class="home-grey-box"></div>
+<div class="home-grey-box light-blue"></div>
 
 <div class="tagline text-center">
-  <h1>Raise money by swearing on Twitter!</h1>
+  <h1>Keep track of what you and your friends say on Twitter!</h1>
 </div>
 
 <div class="floating-box">
-  <div class="jumbotron home-page-jumbotron">
-    <h3>This will be a screenshot of a group feed page, or user page</h1>
+  <div class="jumbotron home-page-jumbotron box-shadow">
   </div>
   
 </div>
@@ -15,11 +14,19 @@
 
 <div class="call-to-action">
   <div class="row">
+    <h3 class="text-center">Here's How it Works:</h3>
     <div class="col-sm-7 col-sm-offset-1 call-text">
-      <p>This is some fucking fantastic copy about what swearjar.me does. There are some features. Isn't this cool?</p>
+      <ol class="steps">
+        <li>Create a swear jar group for you and your friends.</li>
+        <li>Make a list of taboo words for the group (like "#yolo" or "literally").</li>
+        <li>If a group member tweets a taboo word, they'll automatically contribute to the jar via Venmo.</li>
+        <li>Have an awesome pizza party with the funds you raised!</li>
+      </ol>
     </div>
     <div class="col-sm-3 call-btn-box">
-      <p><%= link_to 'Sign Up with Twitter', twitter_login_path, class: "btn btn-success btn-lg" %></p> 
+      <% unless logged_in? %>
+        <p><%= link_to 'Sign Up with Twitter', twitter_login_path, class: "btn btn-success btn-lg" %></p> 
+      <% end %>
     </div>
   </div>
 </div>
@@ -27,3 +34,8 @@
 <div class="mobile-logo-fix">
   <%= render 'application/logo' %>
 </div>
+
+
+
+
+
