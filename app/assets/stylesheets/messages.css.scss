@@ -41,7 +41,7 @@
   margin-top: -45px;
 }
 
-.delete-all a.btn {
+.delete-all button.btn {
   color: $grey;
   background: $blue;
   -webkit-transition: all ease 0.25s;
@@ -50,7 +50,12 @@
   transition: all ease 0.25s;
 }
 
-.delete-all a.btn:hover {
+.message-box {
+  height: 80px !important;
+  margin-bottom: -10px !important;
+}
+
+.delete-all button.btn:hover {
   color: $blue;
   background: $grey;
 }
@@ -64,7 +69,18 @@
 }
 
 .delete-btn {
+  top: -65px;
   padding:15px;
   vertical-align: center;
+  width: 125px;
+}
+
+.delete-btn button{
+  background-color: $red;
+  color: white;
+}
+
+.viewed-true:hover{
+  background: $grey !important;
 }
 

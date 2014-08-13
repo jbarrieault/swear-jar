@@ -1,15 +1,19 @@
 # Swear Jar
 
 ## todo
-[ ]new - JACOB (imitate /venmo)
-[ ]edit - JACOB (imitate /venmo)
+
+PRIORITIES
+[ ]Seed data
+[ ]Demo Talk
+[ ]Video
+[ ]Fix time on venmo transaction note
+[ ]Something mitch said
 
 
 [ ]admin promise to spend funds correctly/more legal stuff - JACOB/MITCH
-  [ ]design shit - MITCH
+[ ]design shit - MITCH
 [ ]About page (maybe just index w/ app definition
 
-[ ]Seed data
 
 
 Seed Data:
@@ -21,7 +25,7 @@ Seed Data:
   - tweets from users
 
 [ ]About page (maybe just index w/ app definition)
-[ ]Dashboard - Charts! Group show page
+[X]Dashboard - Charts! Group show page
  -violations per user, total raised, most used trigger, violations per day, top violator
 
 [ ]design shit - MITCH
@@ -33,19 +37,15 @@ Seed Data:
     [x]index - delete!!!
     [x]show - fix price
     [x]venmo authorization page
-  [ ]groups
-    [ ]index - MITCH FINISH
-    [ ]show - MITCH (GRAPHS)
-    [ ]closed - MITCH MODEL
   [ ]messages
-    [ ]index - MESSAGES (imitate /groups/index)
-      [x]initial styling
-      [x]gray out viewed messages
-      [x]add picture of sender
-      [ ]make box smaller (Mitch?)
-      [ ]delete button width + error (Jacob?)
-      [ ]override hover styling (Mitch?)
+  [ ]index - MESSAGES (imitate /groups/index)
 
+POST SCIENCE FAIR TODO:
+
+[ ]client and server side validations for new/edit group
+[ ]Delete button modal in groups/show
+
+<<<<<<< HEAD
 GROUPS
 
 I Heart Flatrion
@@ -67,9 +67,5 @@ New Yorker
 - Times Square
 - Chicago
 - LA
-
-
-
-
 
 

@@ -9,14 +9,13 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    if params[:message][:all] == "true"
+    if params[:all]
       current_user.messages.destroy_all
-      render json: current_user
     else
       @message = Message.find(params[:id])
       @message.destroy
-      redirect_to user_messages_path
     end
+    render json: current_user
   end
 
   private
