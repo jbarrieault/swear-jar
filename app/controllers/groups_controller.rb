@@ -87,7 +87,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @group }
-      format.html { redirect_to closed_group_path(@group) }
+      format.html { redirect_to group_path(@group) }
     end
   end
 

@@ -63,7 +63,11 @@
         <div class="custom-panel-content">
           <h3>Toolbar</h3>
           <% if @group.active  %>
-            <p><%= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch", class: "btn btn-default btn-lg"%></p>
+          <!-- Button trigger modal -->
+            <p><button class="btn btn-default btn-lg" data-toggle="modal" data-target="#closeGroup">
+              Close Group
+            </button></p>
+            <%#= link_to "Close Group", close_group_path(group_id: @group.id), method: "patch", class: "btn btn-default btn-lg"%>
           <% else %>
             <p><%= link_to "Delete Group", group_path(group_id: @group.id), method: "delete", class: "btn btn-default btn-lg" %></p>
           <% end %>
@@ -144,7 +148,6 @@
   <div class="clearfix"></div>
 </div><!-- end GROUP WRAPPER -->
 
-
-  
+<%= render "closed_modal" %>
 
 

@@ -32,6 +32,26 @@ button:hover {
   -webkit-appearance:none;
 }
 
+.error-holder {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+p.error, p.notice {
+  color: white;
+  text-align: center;
+  background: rgba($green, 0.7);
+  position: relative;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: 700;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 5px 25px;
+  border-radius: 3px;
+}
+
 .admin-button {
   position: fixed;
   z-index: 1000;
