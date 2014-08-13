@@ -18,7 +18,7 @@
     <div class="custom-panel-content">
       <h3>Latest Violation:</h3>
       <% if @latest_violation %>
-        <p>"<%= @latest_violation_content %>"</p>
+        <p>"<%=h "#{@latest_violation_content}" %>"</p>
         <p class="text-muted text-right"><em><%= distance_of_time_in_words(Time.now - @latest_violation.created_at) %> ago</em></p>
       <% else %>
         <p>"<%= @latest_violation_content %>"</p>
