@@ -1,11 +1,11 @@
 $(function(){
 
-  $('.groups-list').on('click', '.nonmember', function(){ 
+  $('.join-btn').on('click', '.nonmember', function(){ 
     var group_id = $(this).attr('id');
     var that = $(this);
     
     $(this).attr('class', 'member btn btn-default');
-    $(this).text('leave');
+    $(this).text('Leave');
 
     $.ajax({
       type: 'POST',
@@ -17,19 +17,19 @@ $(function(){
       error: function(response){
         that.attr('class', 'nonmember btn btn-default');
         console.log("joining failed");
-        $(this).text('join');
+        $(this).text('Join');
       } 
     });
 
   });
 
 
-  $('.groups-list').on('click', '.member', function(){
+  $('.join-btn').on('click', '.member', function(){
     var group_id = $(this).attr('id');
     var that = $(this);
  
     $(this).attr('class', 'nonmember btn btn-default');
-    $(this).text('join');
+    $(this).text('Join');
 
     $.ajax({
       type: 'POST',
@@ -42,14 +42,14 @@ $(function(){
       error: function(response){
         console.log("leaving failed");
         that.attr('class', 'member btn btn-default');
-        $(this).text('leave');
+        $(this).text('Leave');
       }
     });
 
   });
 
 
-  $('.groups-list').on('click', '.admin', function(){
+  $('.join-btn').on('click', '.admin', function(){
     var group_id = $(this).attr('id');
     var that = $(this);
  

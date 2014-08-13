@@ -29,15 +29,14 @@ Seed Data:
   [/]login/landing page
   [x]user
     [x]index - delete!!!
-    [x]show
+    [x]show - fix price
     [x]venmo authorization page
   [ ]groups
-    [ ]index
-    [ ]new
-    [ ]show
-    [ ]closed
-    [ ]edit
-    [ ]join?
+    [ ]index - MITCH FINISH
+    [ ]new - JACOB (imitate /venmo)
+    [ ]edit - JACOB (imitate /venmo)
+    [ ]show - MITCH (GRAPHS)
+    [ ]closed - MITCH MODEL
   [ ]messages
-    [ ]index
+    [ ]index - MESSAGES (imitate /groups/index)
 
