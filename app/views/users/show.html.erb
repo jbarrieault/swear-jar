@@ -49,20 +49,47 @@
     <div class="custom-panel-border"></div>
     <div class="custom-panel-content">
     <h3>Your Groups:</h3>
-
+      <% if @user.groups != [] %>
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>Admin</h2>
-          <%= render "admin_group_module" %>
+          <% if @user.admin_groups != [] %>
+            <%= render "admin_group_module" %>
+          <% else %>
+          <div class="group-box error-box tweet-box col-sm-10">
+            <div class="top-box text-center">
+                <h3>You are not the admin of any groups.</h3>
+                <p>I think it's time to make one! What are you waiting for? Go make one.</p>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
 
       <div class="panel panel-default">
         <div class="panel-body">
           <h2>User</h2>
-          <%= render "user_group_module" %>
+          <% if @user.user_groups != [] %>
+            <%= render "user_group_module" %>
+          <% else %>
+            <div class="group-box error-box tweet-box col-sm-10">
+              <div class="top-box text-center">
+                <h3>You're not a member of any groups.</h3>
+                <p>Don't you have any friends? Why not join <strong><%= Group.all.sample.name.titleize %></strong>?</p>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
+      <% else %>
+        <div class="group-box error-box tweet-box col-sm-10">
+          <div class="top-box text-center">
+              <h3>You look lonely... you don't belong to any groups.</h3>
+              <p>Why not join <strong><%= Group.all.sample.name.titleize %></strong>?</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 

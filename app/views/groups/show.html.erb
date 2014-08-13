@@ -91,7 +91,7 @@
         <div class="custom-panel-content">
           <h3>Recent Violations</h3>
           <% if @group.tweets != [] %>
-            <% @group.tweets.last(3).each do |tweet| %>
+            <% @group.tweets.last(3).reverse.each do |tweet| %>
               <div class="group-box tweet-box col-sm-10">
                 <div class="tweet-info text-right">
                   <%= link_to tweet.user.name, user_path(tweet.user) %> | <em><%= distance_of_time_in_words(Time.now - tweet.created_at) %> ago</em> |<% tweet.violations_in_group(@group).each do |t| %> 
@@ -102,14 +102,21 @@
                   <div class="group-img-box">
                     <%= image_tag tweet.user.image_url, class: "group-img" %>
                   </div>
-                  <div class="right-text">
+                  <div class="col-sm-10">
                     <p>"<%=h tweet.content %>"</p>
                   </div>
                 </div>
               </div>
             <% end %>
           <% else %>
-            You aint got not violations
+          <!-- ERROR BOX -->
+            <div class="group-box error-box tweet-box col-sm-10">
+              <div class="top-box text-center">
+                  <h3>This group doesn't have any recent violations.</h3>
+                  <p>I guess nobody's been saying <strong><%= @group.triggers.sample.name %></strong> lately.</p>
+                </div>
+              </div>
+            </div>
           <% end %>
         </div>
       </div><!-- end RECENT VIOLATIONS -->
