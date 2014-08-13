@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     if params[:all]
       current_user.messages.destroy_all
       render json: current_user

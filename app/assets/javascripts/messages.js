@@ -5,13 +5,30 @@ $(function(){
     $.ajax({
       type: "DELETE",
       url: "/users/"+user_id+"/messages",
-      data: {message: { all: true }},
+      data: {all: true },
       success: function(response){
         console.log("sweet");
-        $('.message-list').html('');
+        $('.message-list').fadeOut('fast').html('');
       }
     });
 
   });
+
+  //  $('.delete-message').click(function(){
+  //   var that = this;
+
+  //   $.ajax({
+  //     type: "DELETE",
+  //     url: "/users/"+user_id+"/messages",
+  //     success: function(response){
+  //       console.log("sweet");
+  //       // find message holding div
+  //       $(that).fadeOut('fast', function(){
+  //         $(that).remove();
+  //       })
+  //     }
+  //   });
+
+  // });
 
 });
