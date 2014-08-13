@@ -10,9 +10,12 @@
   <%= include_gon %>
 </head>
 <body>
+
+  <% if [1,2,3].include?(current_user.id) %>
   <div class="admin-button">
     <button class="scan btn btn-primary small-btn" type="button">Scan</button>
   </div>
+  <% end %>
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">

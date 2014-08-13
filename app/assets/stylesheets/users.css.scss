@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "custom"; // GRAB SASS VARS
-@import "groups"; // GRAB SASS VARS
 
 .blue-box {
   width: 100%;
@@ -91,8 +90,18 @@ img.profile_image {
   margin-top: 25px;
 }
 
-.tag-grey {
-  background: $grey;
+span.tag-box {
+  color: $grey;
+  background: rgba($red, 0.9);
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 0 4px 3px 0;
+  font-weight: 700;
+  display: inline-block;
+}
+
+span.tag-grey {
+  background: $grey !important;
 }
 
 /* TABLET FIX */
