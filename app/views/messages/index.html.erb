@@ -1,9 +1,48 @@
-<%= javascript_include_tag 'messages' %>
-<h1>Messages</h1><button class="delete-messages btn btn-primary" type="button">Delete All Messages</button>
 
-<ul class="message-list">
-<% @user.messages.reverse.each do |message| %>
-  <li><%= message.content %> | <%= link_to "Delete", user_message_path(id: message.id), method: 'delete' %></li>
-  <strong>Viewed?</strong> <%= message.viewed? %>
-<% end %>
-</ul>
+<div class="blue-box"></div>
+
+<div class="header">
+  <h1>Messages</h1>
+
+  <div class="delete-all text-right">
+    <%= link_to "Delete All Messages", user_messages_destroy_path, class: "delete-messages btn btn-default" %>
+  </div>
+</div>
+
+<div class="group-wrapper">
+
+<!-- FOR AJAX CALLS -->
+<%= javascript_include_tag 'messages' %>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="custom-panel">
+      <div class="custom-panel-border"></div>
+      <div class="custom-panel-content">
+
+        <!-- GROUP MODULE -->
+        <% @user.messages.reverse.each do |message| %>
+              <div class="group-box viewed-<%= message.viewed? %> col-sm-10">
+                <div class="top-box">
+                  <div class="group-img-box">
+                    <%= image_tag @users.find(message.sender).image_url, class: "group-img" %>
+                  </div>
+                  <div class="right-text">
+                    <span><%= message.content %></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+              <div class="delete-btn">
+                <%= link_to "Delete", user_message_path(id: message.id), method: 'delete', class: "delete-messages btn btn-default" %>
+            </div>
+              </div>
+        <% end %><!-- end GROUP MODULE -->
+    
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+</div><!-- end GROUP WRAPPER -->
