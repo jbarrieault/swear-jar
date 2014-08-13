@@ -1,7 +1,7 @@
 # Swear Jar
 
 ## todo
-[ ]new - JACOB (imitate /venmo)
+[X]new - JACOB (imitate /venmo)
 [ ]edit - JACOB (imitate /venmo)
 
 
