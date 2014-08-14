@@ -204,7 +204,7 @@ class User < ActiveRecord::Base
   end
 
   def triggers
-    self.groups.includes(:triggers).map { |g| g.triggers }.flatten
+    self.groups.where(active: true).includes(:triggers).map { |g| g.triggers }.flatten
   end
 
   def your_or_name(current_user)
