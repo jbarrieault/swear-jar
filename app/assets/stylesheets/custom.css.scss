@@ -481,7 +481,13 @@ img.group-img {
   }
 
   .logo-wrapper {
+    text-align: center;
     width: 100%;
+  }
+
+  .logo-wrapper img {
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }
