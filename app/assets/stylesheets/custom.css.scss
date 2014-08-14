@@ -426,6 +426,10 @@ img.group-img {
   font-weight: 100;
 }
 
+.paddit {
+  padding-right: 50px;
+}
+
 /* TABLET */
 
 @media screen and (max-width:770px) {
@@ -460,6 +464,11 @@ img.group-img {
   .group-box {
     height: 175px;
   }
+
+  .paddit {
+    padding-right: none;
+  }
+
 
 }
 
