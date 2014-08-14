@@ -7,14 +7,6 @@ $green: #3b912f !default;
 $lightGreen: #75be6f !default;
 $red: #8A3324 !default;
 
-// rgba(237, 238, 239, 1),  
-// rgba(127, 140, 141, 1), 
-// rgba(53, 57, 60, 1), 
-// rgba(52, 73, 94, 1), 
-// rgba(141, 170 198, 1), 
-// rgba(59, 145, 47, 1), 
-// rgba(117, 190, 111, 1)
-
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,700,900);
 
 // NO HIGHLIGHTS EVER!!!!!!
@@ -101,11 +93,11 @@ ol.steps {
   font-weight: 100;
   font-size: 24px;
   letter-spacing: 1px;
-  cursor: default;
 }
 
 .header-logo a:hover {
   text-decoration: none;
+  color: $darkGrey;
 }
 
 .login-buffer {
@@ -190,6 +182,18 @@ nav a.btn:hover {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+img.jumbo-img {
+  display: block;
+  margin: auto;
+
+  height: auto;
+  max-height: 100%;
+
+  width: auto;
+  max-width: 100%;
+  border-radius: 5px;
 }
 
 .box-shadow {
@@ -468,12 +472,16 @@ img.group-img {
   }
 
   .mobile-logo-fix {
-    padding-top: 75px;
+    padding-top: 175px;
   }
 
   .group-box .right-text {
     width: 175px;
     font-size: 12px;
+  }
+
+  .logo-wrapper {
+    width: 100%;
   }
 
 }

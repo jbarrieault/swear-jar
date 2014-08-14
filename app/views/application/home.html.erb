@@ -4,10 +4,8 @@
   <h1>Keep track of what you and your friends say on Twitter!</h1>
 </div>
 
-<div class="floating-box">
-  <div class="jumbotron home-page-jumbotron box-shadow">
-  </div>
-  
+<div class="floating-box box-shadow">
+    <%= image_tag "http://i.imgur.com/5VCH5D9.jpg", class: "jumbo-img" %>
 </div>
 
 <div class="clearfix"></div>
@@ -24,7 +22,9 @@
       </ol>
     </div>
     <div class="col-sm-3 call-btn-box">
-      <% unless logged_in? %>
+      <% if logged_in? %>
+        <p><%= link_to "See your page", user_path(current_user), class: "btn btn-success btn-lg" %></p> 
+      <% else %>
         <p><%= link_to 'Sign Up with Twitter', twitter_login_path, class: "btn btn-success btn-lg" %></p> 
       <% end %>
     </div>
