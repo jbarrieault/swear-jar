@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if auth_hash[:provider] == "twitter"
       image_url   = auth_hash[:info][:image].gsub("_normal", "")
       handle = auth_hash[:info][:nickname]
-      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name], screen_name: handle)
+      @user = User.find_or_create_by(twitter_id: auth_hash[:uid], name: auth_hash[:info][:name])
       if @user
         @user.image_url = image_url
         @user.save
